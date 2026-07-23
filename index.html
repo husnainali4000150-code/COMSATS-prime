@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTS Preparation Hub - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        /* NTS Pattern Cards */
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .subject-bar {
+            margin-bottom: 1rem;
+        }
+
+        .subject-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .bar {
+            background: #ecf0f1;
+            height: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Topics Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card ul {
+            list-style-position: inside;
+            color: #666;
+        }
+
+        .topic-card li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .calc-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .calc-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #667eea;
+            background: transparent;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .calc-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .calc-content {
+            display: none;
+        }
+
+        .calc-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .result-box h3 {
+            color: #667eea;
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Topic Details (Hidden by default) */
+        .topic-details {
+            display: none;
+            background: #f0f4ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .topic-details.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#pattern">NTS Pattern</a></li>
+            <li><a href="#topics">Important Topics</a></li>
+            <li><a href="#calculators">Calculators</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <header id="home">
+        <h1>NTS Preparation Hub</h1>
+        <p>Complete platform for NTS exam preparation with smart calculators</p>
+        <a href="#pattern" class="btn">View NTS Pattern</a>
+        <a href="#calculators" class="btn">Calculate Merit</a>
+    </header>
+
+    <!-- NTS Pattern Section -->
+    <section id="pattern">
+        <h2>📊 NTS Exam Pattern</h2>
+        <div class="pattern-grid">
+            <!-- GAT General Card -->
+            <div class="card">
+                <h3>NTS GAT General</h3>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>Quantitative Reasoning</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 35%">35%</div>
+                    </div>
+                </div>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>Verbal Reasoning</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 35%">35%</div>
+                    </div>
+                </div>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>Analytical Reasoning</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 30%">30%</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: #666;">
+                    <strong>Total Questions:</strong> 100<br>
+                    <strong>Time:</strong> 120 minutes<br>
+                    <strong>Total Marks:</strong> 100
+                </p>
+            </div>
+
+            <!-- NAT Card -->
+            <div class="card">
+                <h3>NTS NAT</h3>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>English</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 20%">20%</div>
+                    </div>
+                </div>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>Mathematics</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 20%">20%</div>
+                    </div>
+                </div>
+                <div class="subject-bar">
+                    <div class="subject-name">
+                        <span>Subject Specific</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-fill" style="width: 60%">60%</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: #666;">
+                    <strong>Total Questions:</strong> 90<br>
+                    <strong>Time:</strong> 120 minutes<br>
+                    <strong>Total Marks:</strong> 90
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Topics Section -->
+    <section id="topics">
+        <h2>📚 Important Topics</h2>
+        <div class="topics-grid">
+            <!-- Quantitative Reasoning -->
+            <div class="topic-card" onclick="toggleTopic('quant')">
+                <div class="topic-icon">📊</div>
+                <h3>Quantitative Reasoning</h3>
+                <ul>
+                    <li>Arithmetic & Percentages</li>
+                    <li>Algebra & Equations</li>
+                    <li>Geometry</li>
+                    <li>Data Interpretation</li>
+                </ul>
+                <p style="color: #667eea; margin-top: 1rem;">Click for details ▼</p>
+                <div id="quant" class="topic-details">
+                    <h4>Detailed Topics:</h4>
+                    <p><strong>1. Arithmetic (30%)</strong></p>
+                    <p>- Percentage, Ratio, Profit/Loss</p>
+                    <p>- Simple & Compound Interest</p>
+                    <p>- Time, Speed, Distance</p>
+                    <p><strong>2. Algebra (25%)</strong></p>
+                    <p>- Linear & Quadratic Equations</p>
+                    <p>- Inequalities, Functions</p>
+                    <p><strong>3. Geometry (20%)</strong></p>
+                    <p>- Triangles, Circles, Area</p>
+                    <p><strong>4. Data Interpretation (25%)</strong></p>
+                    <p>- Graphs, Charts, Statistics</p>
+                </div>
+            </div>
+
+            <!-- Verbal Reasoning -->
+            <div class="topic-card" onclick="toggleTopic('verbal')">
+                <div class="topic-icon">📖</div>
+                <h3>Verbal Reasoning</h3>
+                <ul>
+                    <li>Reading Comprehension</li>
+                    <li>Vocabulary & Analogies</li>
+                    <li>Sentence Completion</li>
+                    <li>Grammar Usage</li>
+                </ul>
+                <p style="color: #667eea; margin-top: 1rem;">Click for details ▼</p>
+                <div id="verbal" class="topic-details">
+                    <h4>Detailed Topics:</h4>
+                    <p><strong>1. Reading Comprehension (35%)</strong></p>
+                    <p>- Main Idea, Inference</p>
+                    <p>- Author's Tone & Purpose</p>
+                    <p><strong>2. Vocabulary (25%)</strong></p>
+                    <p>- Synonyms, Antonyms, Analogies</p>
+                    <p><strong>3. Grammar (20%)</strong></p>
+                    <p>- Error Detection, Sentence Correction</p>
+                    <p><strong>4. Critical Reasoning (20%)</strong></p>
+                    <p>- Argument Analysis, Logical Fallacies</p>
+                </div>
+            </div>
+
+            <!-- Analytical Reasoning -->
+            <div class="topic-card" onclick="toggleTopic('analytical')">
+                <div class="topic-icon">🧩</div>
+                <h3>Analytical Reasoning</h3>
+                <ul>
+                    <li>Logic Puzzles</li>
+                    <li>Arrangement Problems</li>
+                    <li>Seating Arrangements</li>
+                    <li>Logical Deductions</li>
+                </ul>
+                <p style="color: #667eea; margin-top: 1rem;">Click for details ▼</p>
+                <div id="analytical" class="topic-details">
+                    <h4>Detailed Topics:</h4>
+                    <p><strong>1. Logic Games (40%)</strong></p>
+                    <p>- Ordering, Grouping, Assignment</p>
+                    <p><strong>2. Puzzles (30%)</strong></p>
+                    <p>- Seating, Scheduling, Matrix</p>
+                    <p><strong>3. Deductive Reasoning (30%)</strong></p>
+                    <p>- Syllogisms, Venn Diagrams</p>
+                </div>
+            </div>
+
+            <!-- General Knowledge -->
+            <div class="topic-card" onclick="toggleTopic('gk')">
+                <div class="topic-icon">🌍</div>
+                <h3>General Knowledge</h3>
+                <ul>
+                    <li>Current Affairs</li>
+                    <li>Pakistan Studies</li>
+                    <li>Islamic Studies</li>
+                    <li>Everyday Science</li>
+                </ul>
+                <p style="color: #667eea; margin-top: 1rem;">Click for details ▼</p>
+                <div id="gk" class="topic-details">
+                    <h4>Detailed Topics:</h4>
+                    <p><strong>1. Current Affairs (25%)</strong></p>
+                    <p>- National & International News</p>
+                    <p><strong>2. Pakistan Studies (30%)</strong></p>
+                    <p>- History, Geography, Politics</p>
+                    <p><strong>3. Islamic Studies (25%)</strong></p>
+                    <p>- Basic Teachings, History</p>
+                    <p><strong>4. Science (20%)</strong></p>
+                    <p>- Physics, Biology, Chemistry Basics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section id="calculators">
+        <h2>🧮 Smart Calculators</h2>
+        
+        <div class="calculator-section">
+            <!-- Calculator Tabs -->
+            <div class="calc-buttons">
+                <button class="calc-btn active" onclick="showCalculator('merit')">Merit Calculator</button>
+                <button class="calc-btn" onclick="showCalculator('gpa')">GPA Calculator</button>
+                <button class="calc-btn" onclick="showCalculator('cgpa')">CGPA Calculator</button>
+                <button class="calc-btn" onclick="showCalculator('internal')">Internal Marks</button>
+            </div>
+
+            <!-- Merit Calculator -->
+            <div id="merit" class="calc-content active">
+                <h3>Calculate Your Merit</h3>
+                <div class="form-group">
+                    <label>Matric Marks (%)</label>
+                    <input type="number" id="matricMarks" placeholder="e.g., 85" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>Intermediate Marks (%)</label>
+                    <input type="number" id="interMarks" placeholder="e.g., 78" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label>NTS Test Score</label>
+                    <input type="number" id="ntsScore" placeholder="e.g., 72" min="0" max="100">
+                </div>
+                <button class="calculate-btn" onclick="calculateMerit()">Calculate Merit</button>
+                <div id="meritResult" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- GPA Calculator -->
+            <div id="gpa" class="calc-content">
+                <h3>Semester GPA Calculator</h3>
+                <div id="gpaSubjects"></div>
+                <button class="calculate-btn" onclick="addGPASubject()">+ Add Subject</button>
+                <button class="calculate-btn" onclick="calculateGPA()">Calculate GPA</button>
+                <div id="gpaResult" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- CGPA Calculator -->
+            <div id="cgpa" class="calc-content">
+                <h3>CGPA Calculator</h3>
+                <div id="cgpaSemesters"></div>
+                <button class="calculate-btn" onclick="addCGPASemester()">+ Add Semester</button>
+                <button class="calculate-btn" onclick="calculateCGPA()">Calculate CGPA</button>
+                <div id="cgpaResult" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- Internal Marks Calculator -->
+            <div id="internal" class="calc-content">
+                <h3>Internal Marks Calculator</h3>
+                <div class="form-group">
+                    <label>Attendance (out of 5)</label>
+                    <input type="number" id="attendance" placeholder="e.g., 4" min="0" max="5">
+                </div>
+                <div class="form-group">
+                    <label>Assignments (out of 10)</label>
+                    <input type="number" id="assignments" placeholder="e.g., 8" min="0" max="10">
+                </div>
+                <div class="form-group">
+                    <label>Quizzes (out of 10)</label>
+                    <input type="number" id="quizzes" placeholder="e.g., 7" min="0" max="10">
+                </div>
+                <div class="form-group">
+                    <label>Presentation (out of 5)</label>
+                    <input type="number" id="presentation" placeholder="e.g., 4" min="0" max="5">
+                </div>
+                <button class="calculate-btn" onclick="calculateInternal()">Calculate Internal Marks</button>
+                <div id="internalResult" class="result-box" style="display:none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources">
+        <h2>📁 Study Resources</h2>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">📝</div>
+                <h3>Practice Tests</h3>
+                <p>20+ full-length mock tests with answers</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">📄</div>
+                <h3>Study Notes</h3>
+                <p>Topic-wise comprehensive notes (PDF)</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">🎥</div>
+                <h3>Video Lectures</h3>
+                <p>Expert-led video tutorials for all topics</p>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">📋</div>
+                <h3>Past Papers</h3>
+                <p>Solved papers from 2015-2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 NTS Preparation Hub. All rights reserved.</p>
+        <p>Contact: support@ntsprephub.com</p>
+    </footer>
+
+    <script>
+        // Toggle topic details
+        function toggleTopic(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('show')) {
+                element.classList.remove('show');
+            } else {
+                element.classList.add('show');
+            }
+        }
+
+        // Show calculator
+        function showCalculator(type) {
+            // Hide all calculators
+            document.querySelectorAll('.calc-content').forEach(calc => {
+                calc.classList.remove('active');
+            });
+            // Remove active from all buttons
+            document.querySelectorAll('.calc-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected calculator
+            document.getElementById(type).classList.add('active');
+            // Make button active
+            event.target.classList.add('active');
+        }
+
+        // Merit Calculator
+        function calculateMerit() {
+            const matric = parseFloat(document.getElementById('matricMarks').value) || 0;
+            const inter = parseFloat(document.getElementById('interMarks').value) || 0;
+            const nts = parseFloat(document.getElementById('ntsScore').value) || 0;
+            
+            // Formula: 10% Matric + 40% Inter + 50% NTS
+            const merit = (matric * 0.1) + (inter * 0.4) + (nts * 0.5);
+            
+            document.getElementById('meritResult').style.display = 'block';
+            document.getElementById('meritResult').innerHTML = 
+                `<h3>${merit.toFixed(2)}%</h3><p>Your Aggregate Merit Score</p>`;
+        }
+
+        // GPA Calculator
+        let gpaCount = 0;
+        
+        function addGPASubject() {
+            gpaCount++;
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.style.display = 'flex';
+            div.style.gap = '1rem';
+            div.innerHTML = `
+                <input type="text" placeholder="Subject name" style="flex: 2;" class="gpaSubject">
+                <input type="number" placeholder="Credit hours" style="flex: 1;" class="gpaCredit" min="1" max="4">
+                <select class="gpaGrade" style="flex: 2;">
+                    <option value="">Select Grade</option>
+                    <option value="4.0">A (4.0)</option>
+                    <option value="3.7">A- (3.7)</option>
+                    <option value="3.3">B+ (3.3)</option>
+                    <option value="3.0">B (3.0)</option>
+                    <option value="2.7">B- (2.7)</option>
+                    <option value="2.3">C+ (2.3)</option>
+                    <option value="2.0">C (2.0)</option>
+                    <option value="1.7">C- (1.7)</option>
+                    <option value="1.0">D (1.0)</option>
+                    <option value="0.0">F (0.0)</option>
+                </select>
+            `;
+            document.getElementById('gpaSubjects').appendChild(div);
+        }
+        
+        function calculateGPA() {
+            const credits = document.querySelectorAll('.gpaCredit');
+            const grades = document.querySelectorAll('.gpaGrade');
+            
+            let totalPoints = 0;
+            let totalCredits = 0;
+            
+            grades.forEach((grade, index) => {
+                const gradeValue = parseFloat(grade.value) || 0;
+                const creditValue = parseFloat(credits[index].value) || 0;
+                totalPoints += gradeValue * creditValue;
+                totalCredits += creditValue;
+            });
+            
+            const gpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
+            
+            document.getElementById('gpaResult').style.display = 'block';
+            document.getElementById('gpaResult').innerHTML = 
+                `<h3>${gpa.toFixed(2)}</h3><p>Semester GPA (${totalCredits} credit hours)</p>`;
+        }
+
+        // CGPA Calculator
+        let cgpaCount = 0;
+        
+        function addCGPASemester() {
+            cgpaCount++;
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.style.display = 'flex';
+            div.style.gap = '1rem';
+            div.innerHTML = `
+                <input type="text" placeholder="Semester ${cgpaCount}" style="flex: 2;" class="cgpaName">
+                <input type="number" placeholder="GPA" style="flex: 1;" class="cgpaGPA" step="0.01" min="0" max="4">
+                <input type="number" placeholder="Credit Hours" style="flex: 1;" class="cgpaCredit" min="1">
+            `;
+            document.getElementById('cgpaSemesters').appendChild(div);
+        }
+        
+        function calculateCGPA() {
+            const gpas = document.querySelectorAll('.cgpaGPA');
+            const credits = document.querySelectorAll('.cgpaCredit');
+            
+            let totalPoints = 0;
+            let totalCredits = 0;
+            
+            gpas.forEach((gpa, index) => {
+                const gpaValue = parseFloat(gpa.value) || 0;
+                const creditValue = parseFloat(credits[index].value) || 0;
+                totalPoints += gpaValue * creditValue;
+                totalCredits += creditValue;
+            });
+            
+            const cgpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
+            
+            document.getElementById('cgpaResult').style.display = 'block';
+            document.getElementById('cgpaResult').innerHTML = 
+                `<h3>${cgpa.toFixed(2)}</h3><p>Cumulative GPA (Total: ${totalCredits} credits)</p>`;
+        }
+
+        // Internal Marks Calculator
+        function calculateInternal() {
+            const attendance = parseFloat(document.getElementById('attendance').value) || 0;
+            const assignments = parseFloat(document.getElementById('assignments').value) || 0;
+            const quizzes = parseFloat(document.getElementById('quizzes').value) || 0;
+            const presentation = parseFloat(document.getElementById('presentation').value) || 0;
+            
+            const total = attendance + assignments + quizzes + presentation;
+            const percentage = (total / 30) * 100;
+            
+            document.getElementById('internalResult').style.display = 'block';
+            document.getElementById('internalResult').innerHTML = 
+                `<h3>${total}/30</h3>
+                 <p>${percentage.toFixed(1)}% Internal Marks</p>
+                 <p style="font-size: 0.9rem;">
+                    Attendance: ${attendance}/5 | 
+                    Assignments: ${assignments}/10 | 
+                    Quizzes: ${quizzes}/10 | 
+                    Presentation: ${presentation}/5
+                 </p>`;
+        }
+
+        // Add initial subjects for GPA and CGPA
+        window.onload = function() {
+            addGPASubject();
+            addGPASubject();
+            addGPASubject();
+            addCGPASemester();
+            addCGPASemester();
+        };
+    </script>
+</body>
+</html>

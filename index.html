@@ -201,40 +201,42 @@
         .badge-green { background: #e8f5e9; color: var(--green); }
         .badge-red { background: #fdecea; color: var(--red); }
 
-        /* ========== MODAL / POPUP ========== */
+        /* ========== FULL-SCREEN PAGE (was modal) ========== */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
+            background: var(--bg);
             z-index: 2000;
             overflow-y: auto;
-            padding: 2rem;
         }
-        .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
+        .modal-overlay.active { display: block; }
 
         .modal {
             background: var(--white);
-            border-radius: 20px;
             width: 100%;
-            max-width: 800px;
-            margin: 1rem auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: slideUp 0.3s ease;
+            min-height: 100vh;
+            margin: 0 auto;
+            max-width: 100%;
+            box-shadow: none;
+            animation: fadeInPage 0.25s ease;
         }
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal-header {
             background: linear-gradient(135deg, var(--blue), var(--blue-light));
             color: white;
-            padding: 1.2rem 1.5rem;
-            border-radius: 20px 20px 0 0;
+            padding: 1.2rem 2rem;
+            border-radius: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         .modal-header h3 { font-size: 1.3rem; }
         .modal-close {
@@ -250,7 +252,7 @@
         }
         .modal-close:hover { background: rgba(255,255,255,0.4); }
 
-        .modal-body { padding: 1.5rem; max-height: 60vh; overflow-y: auto; }
+        .modal-body { padding: 1.5rem 2rem 3rem; max-width: 900px; margin: 0 auto; }
 
         /* ========== ACCORDION ========== */
         .accordion-item {
@@ -330,6 +332,7 @@
             border-radius: 12px;
             margin-bottom: 1rem;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
         .course-header {
             background: #f8f9fa;
@@ -362,6 +365,106 @@
             margin: 0.8rem 0 0.5rem;
         }
         .section-label.green { background: var(--green); }
+
+        /* ---- repeating entry rows (quiz/assignment) ---- */
+        .entry-block { margin-bottom: 0.6rem; }
+        .entry-block-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+        .entry-block-head span { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+        .entry-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+        .entry-row input {
+            padding: 0.55rem 0.7rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            background: #fafafa;
+        }
+        .entry-row input:focus { outline: none; border-color: var(--blue); background: white; }
+        .entry-remove {
+            background: var(--red);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .entry-remove:hover { background: var(--red-light); }
+        .entry-add {
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .entry-add:hover { background: var(--blue-light); }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+        .gpa-row {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr 0.8fr auto auto;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .gpa-row input {
+            padding: 0.55rem 0.7rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            background: #fafafa;
+        }
+        .gpa-row input:focus { outline: none; border-color: var(--blue); background: white; }
+
+        .grade-live {
+            display: inline-block;
+            margin-left: 0.6rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: #e8eaf6;
+            color: var(--blue);
+            transition: all 0.25s;
+        }
+
+        .circles-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .circle-stat {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid var(--blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .circle-stat.green-ring { border-color: var(--green); }
+        .circle-stat .c-val { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+        .circle-stat .c-lbl { font-size: 0.72rem; color: var(--text-light); margin-top: 0.15rem; }
 
         /* ========== RESULT BOX ========== */
         .result-display {
@@ -419,11 +522,11 @@
             .hero-stats { gap: 0.8rem; }
             .stat-item { padding: 0.8rem 1rem; min-width: 90px; }
             .stat-item .num { font-size: 1.4rem; }
-            .form-row, .form-row-3 { grid-template-columns: 1fr; }
-            .modal-overlay { padding: 0.5rem; }
-            .modal { border-radius: 12px; }
+            .form-row, .form-row-3, .two-col { grid-template-columns: 1fr; }
             .modal-body { padding: 1rem; }
             .tools-grid { grid-template-columns: 1fr; }
+            .entry-row { grid-template-columns: 1fr 1fr auto; }
+            .gpa-row { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -585,69 +688,8 @@
                 <h3>📄 NTS Sample Paper (Solved)</h3>
                 <button class="modal-close" onclick="closeModal('sample-paper')">✕</button>
             </div>
-            <div class="modal-body">
-                <h4 style="color:var(--blue);">Section 1: Verbal Reasoning (Sample)</h4>
-                
-                <div class="question-block">
-                    <div class="q-num">Q1. Choose the synonym of "ABUNDANT":</div>
-                    <div class="options">
-                        <div>A) Scarce</div>
-                        <div>B) Plentiful ✓</div>
-                        <div>C) Limited</div>
-                        <div>D) Rare</div>
-                    </div>
-                    <div class="correct-ans">✅ Correct Answer: B) Plentiful</div>
-                </div>
-
-                <div class="question-block">
-                    <div class="q-num">Q2. Complete the sentence: "She was _____ tired that she fell asleep immediately."</div>
-                    <div class="options">
-                        <div>A) very</div>
-                        <div>B) so ✓</div>
-                        <div>C) too</div>
-                        <div>D) much</div>
-                    </div>
-                    <div class="correct-ans">✅ Correct Answer: B) so</div>
-                </div>
-
-                <h4 style="color:var(--blue);margin-top:1.5rem;">Section 2: Analytical Reasoning (Sample)</h4>
-
-                <div class="question-block">
-                    <div class="q-num">Q3. A is older than B. C is older than A. Who is the oldest?</div>
-                    <div class="options">
-                        <div>A) A</div>
-                        <div>B) B</div>
-                        <div>C) C ✓</div>
-                        <div>D) Cannot be determined</div>
-                    </div>
-                    <div class="correct-ans">✅ Correct Answer: C) C</div>
-                </div>
-
-                <h4 style="color:var(--blue);margin-top:1.5rem;">Section 3: Quantitative Reasoning (Sample)</h4>
-
-                <div class="question-block">
-                    <div class="q-num">Q4. What is 25% of 200?</div>
-                    <div class="options">
-                        <div>A) 25</div>
-                        <div>B) 50 ✓</div>
-                        <div>C) 75</div>
-                        <div>D) 100</div>
-                    </div>
-                    <div class="correct-ans">✅ Correct Answer: B) 50</div>
-                </div>
-
-                <div class="question-block">
-                    <div class="q-num">Q5. If x + 5 = 12, then x = ?</div>
-                    <div class="options">
-                        <div>A) 5</div>
-                        <div>B) 6</div>
-                        <div>C) 7 ✓</div>
-                        <div>D) 8</div>
-                    </div>
-                    <div class="correct-ans">✅ Correct Answer: C) 7</div>
-                </div>
-
-                <p style="text-align:center;margin-top:1rem;color:var(--text-light);">📌 Full 90 MCQs sample paper will be available for download soon!</p>
+            <div class="modal-body" id="samplePaperBody">
+                <!-- populated by JS -->
             </div>
         </div>
     </div>
@@ -659,40 +701,8 @@
                 <h3>📚 NTS Syllabus & Important Topics</h3>
                 <button class="modal-close" onclick="closeModal('syllabus')">✕</button>
             </div>
-            <div class="modal-body">
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">📖 Verbal Reasoning - Important Topics</div>
-                    <div class="accordion-body">
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Most Repeated:</strong> Synonyms (5-6 Qs), Antonyms (4-5 Qs)</li>
-                            <li><strong>High Weightage:</strong> Reading Comprehension (6-8 Qs)</li>
-                            <li><strong>Important:</strong> Analogies, Sentence Completion, Grammar</li>
-                            <li><strong>Study Tip:</strong> Learn 20 new words daily</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">🧩 Analytical Reasoning - Important Topics</div>
-                    <div class="accordion-body">
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Most Repeated:</strong> Seating Arrangements (5-6 Qs)</li>
-                            <li><strong>High Weightage:</strong> Logic Puzzles (4-5 Qs)</li>
-                            <li><strong>Important:</strong> Blood Relations, Direction Sense</li>
-                            <li><strong>Study Tip:</strong> Practice drawing diagrams</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">🔢 Quantitative Reasoning - Important Topics</div>
-                    <div class="accordion-body">
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Most Repeated:</strong> Percentages, Ratios (5-6 Qs)</li>
-                            <li><strong>High Weightage:</strong> Algebra & Equations (4-5 Qs)</li>
-                            <li><strong>Important:</strong> Data Interpretation, Time-Speed-Distance</li>
-                            <li><strong>Study Tip:</strong> Memorize formulas & shortcuts</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="modal-body" id="syllabusBody">
+                <!-- populated by JS -->
             </div>
         </div>
     </div>
@@ -705,7 +715,7 @@
                 <button class="modal-close" onclick="closeModal('merit')">✕</button>
             </div>
             <div class="modal-body">
-                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Formula: Matric 10% + Intermediate 40% + NTS 50%</p>
+                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Formula: Matric 10% + Intermediate (Part 1) 40% + NTS 50%</p>
                 
                 <h4 style="color:var(--blue);">Matriculation</h4>
                 <div class="form-row">
@@ -713,10 +723,10 @@
                     <div class="form-group"><label>Obtained Marks</label><input type="number" id="matric-obt" placeholder="e.g., 935"></div>
                 </div>
 
-                <h4 style="color:var(--blue);">Intermediate</h4>
+                <h4 style="color:var(--blue);">Intermediate (Part 1 Marks)</h4>
                 <div class="form-row">
-                    <div class="form-group"><label>Total Marks</label><input type="number" id="inter-total" placeholder="e.g., 1100"></div>
-                    <div class="form-group"><label>Obtained Marks</label><input type="number" id="inter-obt" placeholder="e.g., 880"></div>
+                    <div class="form-group"><label>Total Marks</label><input type="number" id="inter-total" placeholder="e.g., 550"></div>
+                    <div class="form-group"><label>Obtained Marks</label><input type="number" id="inter-obt" placeholder="e.g., 470"></div>
                 </div>
 
                 <div class="form-group"><label>NTS Test Score (out of 100)</label><input type="number" id="nts-score" placeholder="e.g., 75"></div>
@@ -763,6 +773,10 @@
                 <div class="result-display" id="gpa-result">
                     <div class="big-num" id="gpa-val">0.00</div>
                     <p style="color:var(--text-light);">GPA</p>
+                </div>
+                <div class="accordion-item" style="margin-top:1.5rem;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">ℹ️ Grading Criteria</div>
+                    <div class="accordion-body" id="gradeCriteriaBody"></div>
                 </div>
             </div>
         </div>
@@ -831,6 +845,7 @@
         function openModal(id) {
             document.getElementById('modal-' + id).classList.add('active');
             document.body.style.overflow = 'hidden';
+            window.scrollTo(0,0);
         }
         
         function closeModal(id) {
@@ -841,14 +856,6 @@
         function toggleAccordion(header) {
             header.nextElementSibling.classList.toggle('show');
         }
-
-        // Close modal on overlay click
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                e.target.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
 
         // ============ MERIT CALCULATOR ============
         function calcMerit() {
@@ -863,145 +870,271 @@
             const merit = (mp * 0.10) + (ip * 0.40) + (nts * 0.50);
             document.getElementById('merit-result').style.display = 'block';
             document.getElementById('merit-val').textContent = merit.toFixed(2) + '%';
-            document.getElementById('merit-detail').textContent = `Matric: ${mp.toFixed(1)}% (10%) + Inter: ${ip.toFixed(1)}% (40%) + NTS: ${nts} (50%)`;
+            document.getElementById('merit-detail').textContent = `Matric: ${mp.toFixed(1)}% (10%) + Inter Part 1: ${ip.toFixed(1)}% (40%) + NTS: ${nts} (50%)`;
         }
 
-        // ============ INTERNAL MARKS - COURSE CARDS ============
-        let courseCount = 0;
-        function addCourse() {
-            courseCount++;
-            const courseList = document.getElementById('courseList');
-            const card = document.createElement('div');
-            card.className = 'course-card';
-            card.id = 'course-' + courseCount;
-            card.innerHTML = `
-                <div class="course-header" onclick="toggleCourse('course-body-${courseCount}')">
-                    <span>📚 Course ${courseCount}</span>
-                    <span style="color:var(--text-light);">▼</span>
-                </div>
-                <div class="course-body" id="course-body-${courseCount}">
-                    <div class="form-row">
-                        <div class="form-group"><label>Subject Name</label><input type="text" class="course-name" placeholder="e.g., Calculus"></div>
-                        <div class="form-group"><label>Credit Hours</label><input type="number" class="course-credit" placeholder="e.g., 3" min="1" max="4"></div>
-                    </div>
-                    <div class="form-group"><label>Has Lab?</label><select class="course-lab" onchange="toggleCourseLab('${courseCount}')"><option value="no">No Lab</option><option value="yes">Has Lab</option></select></div>
+        // ============ GRADING CRITERIA (shared by GPA + Internal Marks) ============
+        // Grade changes every 5 marks. Only A down to C- were specified by you;
+        // D+/D/F were added below to cover marks under 50 so every score gets a grade.
+        const GRADE_TABLE = [
+            { min: 85, grade: 'A',  gp: 4.00 },
+            { min: 80, grade: 'A-', gp: 3.66 },
+            { min: 75, grade: 'B+', gp: 3.33 },
+            { min: 70, grade: 'B',  gp: 3.00 },
+            { min: 65, grade: 'B-', gp: 2.66 },
+            { min: 60, grade: 'C+', gp: 2.33 },
+            { min: 55, grade: 'C',  gp: 2.00 },
+            { min: 50, grade: 'C-', gp: 1.66 },
+            { min: 45, grade: 'D+', gp: 1.33 },
+            { min: 40, grade: 'D',  gp: 1.00 },
+            { min: 0,  grade: 'F',  gp: 0.00 }
+        ];
 
-                    <span class="section-label">📖 Theory Section</span>
-                    <div class="form-row"><div class="form-group"><label>Quiz Total</label><input type="number" class="q-total" placeholder="e.g., 30"></div><div class="form-group"><label>Quiz Obtained</label><input type="number" class="q-obt" placeholder="e.g., 24"></div></div>
-                    <div class="form-row"><div class="form-group"><label>Assignment Total</label><input type="number" class="a-total" placeholder="e.g., 20"></div><div class="form-group"><label>Assignment Obtained</label><input type="number" class="a-obt" placeholder="e.g., 16"></div></div>
-                    <div class="form-row"><div class="form-group"><label>Midterm Total</label><input type="number" class="m-total" placeholder="e.g., 40"></div><div class="form-group"><label>Midterm Obtained</label><input type="number" class="m-obt" placeholder="e.g., 30"></div></div>
-                    <div class="form-row"><div class="form-group"><label>Final Total</label><input type="number" class="f-total" placeholder="e.g., 60"></div><div class="form-group"><label>Final Obtained</label><input type="number" class="f-obt" placeholder="e.g., 45"></div></div>
-
-                    <div class="lab-section" id="lab-section-${courseCount}" style="display:none;">
-                        <span class="section-label green">🔬 Lab Section</span>
-                        <div class="form-row"><div class="form-group"><label>Lab Total</label><input type="number" class="lab-total" placeholder="e.g., 50"></div><div class="form-group"><label>Lab Obtained</label><input type="number" class="lab-obt" placeholder="e.g., 40"></div></div>
-                    </div>
-
-                    <button class="btn btn-green btn-sm" onclick="calcCourseGPA('${courseCount}')">Calculate Course GPA</button>
-                    <div class="course-gpa-result" id="course-gpa-${courseCount}"></div>
-                </div>
-            `;
-            courseList.appendChild(card);
+        function gradeFromPercent(pct) {
+            if (isNaN(pct)) return { grade: '-', gp: 0 };
+            const clamped = Math.max(0, Math.min(100, pct));
+            for (const row of GRADE_TABLE) { if (clamped >= row.min) return row; }
+            return { grade: 'F', gp: 0 };
         }
 
-        function toggleCourse(bodyId) {
-            document.getElementById(bodyId).classList.toggle('open');
+        function buildGradeCriteria() {
+            let html = '<table style="width:100%;border-collapse:collapse;font-size:0.85rem;">';
+            html += '<tr style="background:#f8f9fa;"><th style="padding:0.5rem;text-align:left;">Marks %</th><th style="padding:0.5rem;">Grade</th><th style="padding:0.5rem;">GPA Points</th></tr>';
+            GRADE_TABLE.forEach((row, i) => {
+                const upper = i === 0 ? 100 : GRADE_TABLE[i - 1].min - 1;
+                const range = upper > row.min ? `${row.min}–${upper}%` : `${row.min}%+`;
+                html += `<tr style="border-top:1px solid var(--border);"><td style="padding:0.5rem;">${range}</td><td style="padding:0.5rem;text-align:center;font-weight:600;">${row.grade}</td><td style="padding:0.5rem;text-align:center;">${row.gp.toFixed(2)}</td></tr>`;
+            });
+            html += '</table>';
+            document.getElementById('gradeCriteriaBody').innerHTML = html;
         }
 
-        function toggleCourseLab(courseId) {
-            const labSelect = document.querySelector('#course-' + courseId + ' .course-lab');
-            const labSection = document.getElementById('lab-section-' + courseId);
-            labSection.style.display = labSelect.value === 'yes' ? 'block' : 'none';
-        }
-
-        function calcCourseGPA(courseId) {
-            const qTotal = parseFloat(document.querySelector('#course-' + courseId + ' .q-total').value) || 0;
-            const qObt = parseFloat(document.querySelector('#course-' + courseId + ' .q-obt').value) || 0;
-            const aTotal = parseFloat(document.querySelector('#course-' + courseId + ' .a-total').value) || 0;
-            const aObt = parseFloat(document.querySelector('#course-' + courseId + ' .a-obt').value) || 0;
-            const mTotal = parseFloat(document.querySelector('#course-' + courseId + ' .m-total').value) || 0;
-            const mObt = parseFloat(document.querySelector('#course-' + courseId + ' .m-obt').value) || 0;
-            const fTotal = parseFloat(document.querySelector('#course-' + courseId + ' .f-total').value) || 0;
-            const fObt = parseFloat(document.querySelector('#course-' + courseId + ' .f-obt').value) || 0;
-            const hasLab = document.querySelector('#course-' + courseId + ' .course-lab').value;
-
-            let totalPercent = 0;
-            if (hasLab === 'no') {
-                const qp = qTotal > 0 ? (qObt / qTotal) * 15 : 0;
-                const ap = aTotal > 0 ? (aObt / aTotal) * 10 : 0;
-                const mp = mTotal > 0 ? (mObt / mTotal) * 25 : 0;
-                const fp = fTotal > 0 ? (fObt / fTotal) * 50 : 0;
-                totalPercent = qp + ap + mp + fp;
-            } else {
-                const lTotal = parseFloat(document.querySelector('#course-' + courseId + ' .lab-total').value) || 0;
-                const lObt = parseFloat(document.querySelector('#course-' + courseId + ' .lab-obt').value) || 0;
-                const credit = parseFloat(document.querySelector('#course-' + courseId + ' .course-credit').value) || 3;
-                const labPercent = credit === 3 ? 33 : 25;
-                const theoryPercent = 100 - labPercent;
-                const ap = aTotal > 0 ? (aObt / aTotal) * 25 : 0;
-                const mp = mTotal > 0 ? (mObt / mTotal) * 25 : 0;
-                const fp = fTotal > 0 ? (fObt / fTotal) * 50 : 0;
-                const theoryTotal = ap + mp + fp;
-                const labTotal = lTotal > 0 ? (lObt / lTotal) * 100 : 0;
-                totalPercent = (theoryTotal * (theoryPercent / 100)) + (labTotal * (labPercent / 100));
-            }
-
-            document.getElementById('course-gpa-' + courseId).textContent = totalPercent.toFixed(2) + '%';
-        }
-
-        function calcAllGPA() {
-            let totalWeighted = 0, totalCredits = 0;
-            for (let i = 1; i <= courseCount; i++) {
-                const gpaText = document.getElementById('course-gpa-' + i).textContent;
-                const gpa = parseFloat(gpaText) || 0;
-                const credit = parseFloat(document.querySelector('#course-' + i + ' .course-credit').value) || 0;
-                if (gpa > 0 && credit > 0) {
-                    totalWeighted += gpa * credit;
-                    totalCredits += credit;
-                }
-            }
-            const overall = totalCredits > 0 ? totalWeighted / totalCredits : 0;
-            document.getElementById('overall-gpa-result').style.display = 'block';
-            document.getElementById('overall-gpa-val').textContent = overall.toFixed(2) + '%';
-        }
-
-        // ============ GPA CALCULATOR ============
+        // ============ GPA CALCULATOR (marks-based, live grade) ============
+        let gpaRowCount = 0;
         function addGPASubject() {
+            gpaRowCount++;
             const div = document.createElement('div');
-            div.className = 'form-row-3';
-            div.style.marginBottom = '0.5rem';
+            div.className = 'gpa-row';
             div.innerHTML = `
-                <input type="text" placeholder="Subject" class="gpa-subject">
+                <input type="text" placeholder="Subject">
                 <input type="number" placeholder="Credit Hrs" class="gpa-credit" min="1" max="4">
-                <select class="gpa-grade">
-                    <option value="">Grade</option>
-                    <option value="4.0">A (4.0)</option>
-                    <option value="3.7">A- (3.7)</option>
-                    <option value="3.3">B+ (3.3)</option>
-                    <option value="3.0">B (3.0)</option>
-                    <option value="2.7">B- (2.7)</option>
-                    <option value="2.3">C+ (2.3)</option>
-                    <option value="2.0">C (2.0)</option>
-                    <option value="1.7">C- (1.7)</option>
-                    <option value="1.0">D (1.0)</option>
-                    <option value="0.0">F (0.0)</option>
-                </select>
+                <input type="number" placeholder="Marks %" class="gpa-marks" min="0" max="100" oninput="updateGPARowGrade(this)">
+                <span class="grade-live">–</span>
+                <button type="button" class="entry-remove" onclick="this.parentElement.remove()">✕</button>
             `;
             document.getElementById('gpaSubjects').appendChild(div);
         }
 
+        function updateGPARowGrade(input) {
+            const row = input.closest('.gpa-row');
+            const badge = row.querySelector('.grade-live');
+            const pct = parseFloat(input.value);
+            if (isNaN(pct)) { badge.textContent = '–'; return; }
+            const g = gradeFromPercent(pct);
+            badge.textContent = `${g.grade} (${g.gp.toFixed(2)})`;
+        }
+
         function calcGPA() {
-            const credits = document.querySelectorAll('#gpaSubjects .gpa-credit');
-            const grades = document.querySelectorAll('#gpaSubjects .gpa-grade');
+            const rows = document.querySelectorAll('#gpaSubjects .gpa-row');
             let tp = 0, tc = 0;
-            grades.forEach((g, i) => {
-                const gv = parseFloat(g.value) || 0;
-                const cv = parseFloat(credits[i].value) || 0;
-                if (gv > 0 && cv > 0) { tp += gv * cv; tc += cv; }
+            rows.forEach(row => {
+                const credit = parseFloat(row.querySelector('.gpa-credit').value) || 0;
+                const marks = parseFloat(row.querySelector('.gpa-marks').value);
+                if (credit > 0 && !isNaN(marks)) {
+                    const g = gradeFromPercent(marks);
+                    tp += g.gp * credit;
+                    tc += credit;
+                }
             });
-            const gpa = tc > 0 ? (tp / tc) : 0;
+            const gpa = tc > 0 ? tp / tc : 0;
             document.getElementById('gpa-result').style.display = 'block';
             document.getElementById('gpa-val').textContent = gpa.toFixed(2);
+        }
+
+        // ============ INTERNAL MARKS CALCULATOR (fixed + live) ============
+        let courseCount = 0;
+
+        function addCourse() {
+            courseCount++;
+            const id = courseCount;
+            const courseList = document.getElementById('courseList');
+            const card = document.createElement('div');
+            card.className = 'course-card';
+            card.id = 'course-' + id;
+            card.innerHTML = `
+                <div class="course-header" onclick="toggleCourse('course-body-${id}')">
+                    <span>📚 Course ${id}</span>
+                    <span style="color:var(--text-light);">▼</span>
+                </div>
+                <div class="course-body open" id="course-body-${id}">
+                    <div class="form-row">
+                        <div class="form-group"><label>Subject Name</label><input type="text" class="course-name" placeholder="e.g., Calculus"></div>
+                        <div class="form-group"><label>Credit Hours</label><input type="number" class="course-credit" value="3" min="1" max="4"></div>
+                    </div>
+                    <div class="form-group" style="display:flex;align-items:center;gap:0.5rem;">
+                        <input type="checkbox" class="course-lab" id="hasLab-${id}" onchange="toggleCourseLab(${id})" style="width:auto;">
+                        <label for="hasLab-${id}" style="margin:0;">Has Lab</label>
+                    </div>
+
+                    <span class="section-label">📖 Theory Section</span>
+                    <div class="two-col">
+                        <div>
+                            <div class="entry-block-head"><span>Quizzes</span><button type="button" class="entry-add" onclick="addEntryRow('quiz-${id}')">+ Add</button></div>
+                            <div id="quiz-${id}"></div>
+                        </div>
+                        <div>
+                            <div class="entry-block-head"><span>Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('assign-${id}')">+ Add</button></div>
+                            <div id="assign-${id}"></div>
+                        </div>
+                    </div>
+                    <div class="two-col">
+                        <div>
+                            <div class="entry-block-head"><span>Midterm</span></div>
+                            <div class="form-row"><input type="number" class="mid-total" placeholder="Total"><input type="number" class="mid-obt" placeholder="Obtained"></div>
+                        </div>
+                        <div>
+                            <div class="entry-block-head"><span>Final Term</span></div>
+                            <div class="form-row"><input type="number" class="final-total" placeholder="Total"><input type="number" class="final-obt" placeholder="Obtained"></div>
+                        </div>
+                    </div>
+
+                    <div class="lab-section" id="lab-section-${id}" style="display:none;">
+                        <span class="section-label green">🔬 Lab Section</span>
+                        <div class="entry-block-head"><span>Lab Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('labassign-${id}')">+ Add</button></div>
+                        <div id="labassign-${id}"></div>
+                        <div class="two-col">
+                            <div>
+                                <div class="entry-block-head"><span>Lab Midterm</span></div>
+                                <div class="form-row"><input type="number" class="labmid-total" placeholder="Total"><input type="number" class="labmid-obt" placeholder="Obtained"></div>
+                            </div>
+                            <div>
+                                <div class="entry-block-head"><span>Lab Final Term</span></div>
+                                <div class="form-row"><input type="number" class="labfinal-total" placeholder="Total"><input type="number" class="labfinal-obt" placeholder="Obtained"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="max-width:240px;">
+                            <label>Lab Weightage % <span style="font-weight:400;color:var(--text-light);">(of final grade)</span></label>
+                            <input type="number" class="lab-weight" value="25" min="5" max="60">
+                        </div>
+                    </div>
+
+                    <div class="circles-row">
+                        <div class="circle-stat">
+                            <div class="c-val" id="course-gpa-${id}">0.00</div>
+                            <div class="c-lbl">GPA</div>
+                        </div>
+                        <div class="circle-stat green-ring">
+                            <div class="c-val" id="course-marks-${id}">0.0/100</div>
+                            <div class="c-lbl" id="course-grade-${id}">Marks</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            courseList.appendChild(card);
+
+            for (let i = 0; i < 4; i++) { addEntryRow('quiz-' + id); addEntryRow('assign-' + id); }
+            for (let i = 0; i < 4; i++) { addEntryRow('labassign-' + id); }
+
+            // live recalculation whenever any field in this course changes
+            card.addEventListener('input', () => calcCourseGPA(id));
+            calcCourseGPA(id);
+        }
+
+        function toggleCourse(bodyId) { document.getElementById(bodyId).classList.toggle('open'); }
+
+        function toggleCourseLab(id) {
+            const checked = document.getElementById('hasLab-' + id).checked;
+            document.getElementById('lab-section-' + id).style.display = checked ? 'block' : 'none';
+            calcCourseGPA(id);
+        }
+
+        function addEntryRow(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const row = document.createElement('div');
+            row.className = 'entry-row';
+            row.innerHTML = `
+                <input type="number" class="e-total" placeholder="Total">
+                <input type="number" class="e-obt" placeholder="Obtained">
+                <button type="button" class="entry-remove" onclick="removeEntryRow(this)">✕</button>
+            `;
+            container.appendChild(row);
+        }
+
+        function removeEntryRow(btn) {
+            const card = btn.closest('.course-card');
+            btn.parentElement.remove();
+            if (card) { const id = card.id.split('-')[1]; calcCourseGPA(id); }
+        }
+
+        function sumEntries(containerId) {
+            let total = 0, obt = 0;
+            document.querySelectorAll('#' + containerId + ' .entry-row').forEach(row => {
+                total += parseFloat(row.querySelector('.e-total').value) || 0;
+                obt += parseFloat(row.querySelector('.e-obt').value) || 0;
+            });
+            return total > 0 ? (obt / total * 100) : 0;
+        }
+
+        // Theory weights (sum to 100): Quizzes 15%, Assignments 10%, Midterm 25%, Final 50%
+        // Lab weights (sum to 100 of the lab share): Lab Assignments 20%, Lab Midterm 30%, Lab Final 50%
+        function calcCourseGPA(id) {
+            const card = document.getElementById('course-' + id);
+            if (!card) return { gpa: 0, percent: 0 };
+            const hasLabEl = document.getElementById('hasLab-' + id);
+            const hasLab = hasLabEl ? hasLabEl.checked : false;
+
+            const quizPct = sumEntries('quiz-' + id);
+            const assignPct = sumEntries('assign-' + id);
+            const midTotal = parseFloat(card.querySelector('.mid-total').value) || 0;
+            const midObt = parseFloat(card.querySelector('.mid-obt').value) || 0;
+            const finalTotal = parseFloat(card.querySelector('.final-total').value) || 0;
+            const finalObt = parseFloat(card.querySelector('.final-obt').value) || 0;
+            const midPct = midTotal > 0 ? (midObt / midTotal * 100) : 0;
+            const finalPct = finalTotal > 0 ? (finalObt / finalTotal * 100) : 0;
+
+            const theoryPercent = (quizPct * 0.15) + (assignPct * 0.10) + (midPct * 0.25) + (finalPct * 0.50);
+
+            let finalPercent = theoryPercent;
+
+            if (hasLab) {
+                const labWeight = parseFloat(card.querySelector('.lab-weight').value) || 25;
+                const theoryWeight = 100 - labWeight;
+
+                const labAssignPct = sumEntries('labassign-' + id);
+                const labMidTotal = parseFloat(card.querySelector('.labmid-total').value) || 0;
+                const labMidObt = parseFloat(card.querySelector('.labmid-obt').value) || 0;
+                const labFinalTotal = parseFloat(card.querySelector('.labfinal-total').value) || 0;
+                const labFinalObt = parseFloat(card.querySelector('.labfinal-obt').value) || 0;
+                const labMidPct = labMidTotal > 0 ? (labMidObt / labMidTotal * 100) : 0;
+                const labFinalPct = labFinalTotal > 0 ? (labFinalObt / labFinalTotal * 100) : 0;
+
+                const labPercent = (labAssignPct * 0.20) + (labMidPct * 0.30) + (labFinalPct * 0.50);
+
+                finalPercent = (theoryPercent * (theoryWeight / 100)) + (labPercent * (labWeight / 100));
+            }
+
+            finalPercent = Math.max(0, Math.min(100, finalPercent));
+            const g = gradeFromPercent(finalPercent);
+
+            document.getElementById('course-marks-' + id).textContent = finalPercent.toFixed(1) + '/100';
+            document.getElementById('course-grade-' + id).textContent = g.grade + ' Grade';
+            document.getElementById('course-gpa-' + id).textContent = g.gp.toFixed(2);
+
+            return { gpa: g.gp, percent: finalPercent };
+        }
+
+        function calcAllGPA() {
+            let tp = 0, tc = 0;
+            document.querySelectorAll('.course-card').forEach(card => {
+                const id = card.id.split('-')[1];
+                const result = calcCourseGPA(id);
+                const credit = parseFloat(card.querySelector('.course-credit').value) || 0;
+                if (credit > 0) { tp += result.gpa * credit; tc += credit; }
+            });
+            const overall = tc > 0 ? tp / tc : 0;
+            document.getElementById('overall-gpa-result').style.display = 'block';
+            document.getElementById('overall-gpa-val').textContent = overall.toFixed(2);
         }
 
         // ============ CGPA CALCULATOR ============
@@ -1026,9 +1159,195 @@
                 const cv = parseFloat(credits[i].value) || 0;
                 if (gv > 0 && cv > 0) { tp += gv * cv; tc += cv; }
             });
-            const cgpa = tc > 0 ? (tp / tc) : 0;
+            const cgpa = tc > 0 ? tp / tc : 0;
             document.getElementById('cgpa-result').style.display = 'block';
             document.getElementById('cgpa-val').textContent = cgpa.toFixed(2);
+        }
+
+        // ============ NTS SAMPLE PAPER (90 Solved MCQs) ============
+        const paper = [
+            { section: 'Verbal Reasoning', badge: '20 MCQs', questions: [
+                ['Choose the synonym of "ABUNDANT":', ['Scarce', 'Plentiful', 'Limited', 'Rare'], 1],
+                ['Choose the antonym of "DILIGENT":', ['Hardworking', 'Lazy', 'Sincere', 'Active'], 1],
+                ['Choose the synonym of "BENEVOLENT":', ['Cruel', 'Kind', 'Selfish', 'Rude'], 1],
+                ['Choose the antonym of "METICULOUS":', ['Careful', 'Careless', 'Precise', 'Thorough'], 1],
+                ['Choose the synonym of "CANDID":', ['Honest', 'Secretive', 'Deceptive', 'Shy'], 0],
+                ['Fill in the blank: "She was ___ tired that she fell asleep immediately."', ['very', 'so', 'too', 'much'], 1],
+                ['Fill in the blank: "He is good ___ mathematics."', ['in', 'at', 'on', 'with'], 1],
+                ['Complete the analogy: Doctor : Hospital :: Teacher : ?', ['Clinic', 'School', 'Office', 'Library'], 1],
+                ['Complete the analogy: Pen : Write :: Knife : ?', ['Cut', 'Draw', 'Cook', 'Sharpen'], 0],
+                ['Complete the analogy: Bird : Fly :: Fish : ?', ['Swim', 'Walk', 'Jump', 'Crawl'], 0],
+                ['One-word substitution: "A person who loves books"', ['Bibliophile', 'Bibliophobe', 'Philanthropist', 'Linguist'], 0],
+                ['One-word substitution: "Fear of heights"', ['Claustrophobia', 'Acrophobia', 'Agoraphobia', 'Xenophobia'], 1],
+                ['Choose the grammatically correct sentence:', ['Neither of the boys were present.', 'Neither of the boys was present.', 'Neither of the boys are present.', 'Neither of the boy was present.'], 1],
+                ['Choose the synonym of "TRANSPARENT":', ['Opaque', 'Clear', 'Dull', 'Solid'], 1],
+                ['Choose the antonym of "OPTIMISTIC":', ['Hopeful', 'Pessimistic', 'Cheerful', 'Positive'], 1],
+                ['Identify the correctly spelled word:', ['Recieve', 'Receive', 'Receeve', 'Receve'], 1],
+                ['Choose the correct preposition: "He is afraid ___ dogs."', ['of', 'from', 'with', 'at'], 0],
+                ['"Renewable energy sources such as solar and wind power are becoming increasingly popular because they produce little to no pollution and rely on resources that will not run out." Why are renewable sources becoming popular?', ['They are cheaper than oil', 'They produce little pollution and will not run out', 'They require no maintenance', 'They are found only in developed countries'], 1],
+                ['Choose the correct passive voice: "The chef cooked the meal."', ['The meal was cooked by the chef.', 'The meal cooked by the chef.', 'The meal is cooked by the chef.', 'The meal has cook by chef.'], 0],
+                ['Choose the correct indirect speech: He said, "I am going to school."', ['He said that he was going to school.', 'He said that he is going to school.', 'He said that he go to school.', 'He said I am going to school.'], 0]
+            ]},
+            { section: 'Analytical Reasoning', badge: '20 MCQs', questions: [
+                ['Find the next number in the series: 2, 4, 8, 16, ?', ['18', '24', '32', '30'], 2],
+                ['Find the next number in the series: 3, 6, 11, 18, ?', ['24', '25', '27', '29'], 2],
+                ['Find the next letter in the series: A, C, E, G, ?', ['H', 'I', 'K', 'J'], 1],
+                ['Find the odd one out:', ['Apple', 'Banana', 'Carrot', 'Mango'], 2],
+                ['Pointing to a boy, a woman said, "He is the son of my only brother." How is the boy related to the woman?', ['Nephew', 'Son', 'Cousin', 'Brother'], 0],
+                ['A man walks 5 km north, then 3 km east. Approximately how far is he from his starting point?', ['5.83 km', '8 km', '2 km', '34 km'], 0],
+                ['If in a code CAT is written as 3-1-20 (position of letters in the alphabet), how is DOG written?', ['4-15-7', '4-16-7', '5-15-8', '4-15-8'], 0],
+                ['Statement: "All roses are flowers. Some flowers fade quickly." Which conclusion follows?', ['All roses fade quickly.', 'Some flowers are roses.', 'No rose fades quickly.', 'None of these.'], 1],
+                ['If 5+3=28, 9+1=810, 8+6=214, then 7+2 = ?', ['59', '95', '99', '14'], 0],
+                ['Five friends sit in a row in the order C, A, B, D, E from left to right. Who sits third from the left?', ['A', 'B', 'C', 'D'], 1],
+                ['If today is Monday, what day will it be after 15 days?', ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], 1],
+                ['What is the angle between the hour and minute hand of a clock at 3:00?', ['60°', '75°', '90°', '120°'], 2],
+                ['Statement: "All students who play cricket also play football. Some students play only football." Which is true?', ['All football players play cricket.', 'Some cricket players are football players.', 'No cricket player plays football.', 'All football players play cricket only.'], 1],
+                ['Statement: "The government has banned plastic bags to reduce pollution." Which is the underlying assumption?', ['Plastic bags are the only cause of pollution.', 'Reducing plastic bag use can help reduce pollution.', 'All people will follow the ban immediately.', 'Pollution will completely stop.'], 1],
+                ['In a class of 40 students, Ali ranks 10th from the top. What is his rank from the bottom?', ['30th', '31st', '29th', '32nd'], 1],
+                ['6 is to 36 as 8 is to ?', ['56', '64', '72', '48'], 1],
+                ['Find the odd one out:', ['121', '144', '169', '200'], 3],
+                ['If Monday is coded as 1, Tuesday as 2, and so on, what is Friday coded as?', ['4', '5', '6', '7'], 1],
+                ['Statement: "All doctors are educated. Some educated people are rich." Can we conclude "Some doctors are rich"?', ['Yes', 'No', 'Cannot be determined', 'Always true'], 2],
+                ['Find the missing number: 4, 9, 16, 25, ?', ['30', '32', '36', '49'], 2]
+            ]},
+            { section: 'Quantitative Reasoning', badge: '20 MCQs', questions: [
+                ['What is 25% of 200?', ['25', '50', '75', '100'], 1],
+                ['If x + 5 = 12, then x = ?', ['5', '6', '7', '8'], 2],
+                ['Simple interest on Rs.1000 at 10% per annum for 2 years = ?', ['Rs.100', 'Rs.200', 'Rs.150', 'Rs.250'], 1],
+                ['A train travels 60 km in 1.5 hours. Its speed is?', ['30 km/h', '40 km/h', '45 km/h', '50 km/h'], 1],
+                ['LCM of 4 and 6 = ?', ['8', '12', '24', '10'], 1],
+                ['HCF of 12 and 18 = ?', ['2', '3', '6', '4'], 2],
+                ['A shopkeeper sells an item for Rs.120 after a 20% profit. The cost price was?', ['Rs.90', 'Rs.96', 'Rs.100', 'Rs.110'], 2],
+                ['Average of 10, 20, 30, 40 = ?', ['20', '25', '30', '35'], 1],
+                ['Area of a circle with radius 7 (use π = 22/7) = ?', ['154', '144', '132', '168'], 0],
+                ['If 3 workers finish a job in 12 days, how many days will 6 workers take?', ['6', '8', '4', '12'], 0],
+                ['A ratio is 3:4. If the smaller number is 15, the larger number is?', ['18', '20', '22', '24'], 1],
+                ['Solve: 2x - 4 = 10. x = ?', ['5', '6', '7', '8'], 2],
+                ['Perimeter of a square with side 9 cm = ?', ['27', '36', '45', '18'], 1],
+                ['A discount of 10% on Rs.500 gives a selling price of?', ['Rs.450', 'Rs.480', 'Rs.470', 'Rs.460'], 0],
+                ['Probability of getting a head when tossing a fair coin = ?', ['1/4', '1/2', '1/3', '1'], 1],
+                ['A car covers 150 km in 3 hours. Time to cover 250 km at the same speed = ?', ['4 hours', '5 hours', '6 hours', '4.5 hours'], 1],
+                ['Compound interest on Rs.1000 at 10% for 2 years = ?', ['Rs.210', 'Rs.200', 'Rs.220', 'Rs.100'], 0],
+                ['Value of √144 = ?', ['11', '12', '13', '14'], 1],
+                ['Sum of angles in a triangle = ?', ['90°', '180°', '270°', '360°'], 1],
+                ['If 5 pens cost Rs.50, the cost of 8 pens = ?', ['Rs.60', 'Rs.70', 'Rs.80', 'Rs.90'], 2]
+            ]},
+            { section: 'Physics', badge: '10 MCQs', questions: [
+                ['The SI unit of force is?', ['Joule', 'Newton', 'Watt', 'Pascal'], 1],
+                ['Acceleration due to gravity on Earth is approximately?', ['8.9 m/s²', '9.8 m/s²', '10.8 m/s²', '7.8 m/s²'], 1],
+                ['Which law states "for every action there is an equal and opposite reaction"?', ["Newton's 1st Law", "Newton's 2nd Law", "Newton's 3rd Law", 'Law of Gravitation'], 2],
+                ['The unit of electric current is?', ['Volt', 'Ampere', 'Ohm', 'Watt'], 1],
+                ['The speed of light in vacuum is approximately?', ['3×10⁵ m/s', '3×10⁸ m/s', '3×10⁶ m/s', '3×10¹⁰ m/s'], 1],
+                ['Which of these is a vector quantity?', ['Speed', 'Mass', 'Velocity', 'Energy'], 2],
+                ['Heat transfer through a vacuum happens by?', ['Conduction', 'Convection', 'Radiation', 'Diffusion'], 2],
+                ["Ohm's Law is given by?", ['V = IR', 'V = I/R', 'V = I + R', 'V = I − R'], 0],
+                ['A lens that converges light rays is called?', ['Concave', 'Convex', 'Cylindrical', 'Plane'], 1],
+                ['Which particle carries a negative charge?', ['Proton', 'Neutron', 'Electron', 'Photon'], 2]
+            ]},
+            { section: 'Computer Science & Chemistry', badge: '10 MCQs', questions: [
+                ['Which of these is an input device?', ['Monitor', 'Keyboard', 'Printer', 'Speaker'], 1],
+                ['The binary equivalent of decimal 10 is?', ['1010', '1001', '1100', '1110'], 0],
+                ['RAM stands for?', ['Random Access Memory', 'Read Access Memory', 'Random Available Memory', 'Read Available Memory'], 0],
+                ['Which of these is a network protocol?', ['Python', 'Java', 'HTTP', 'C++'], 2],
+                ['DBMS stands for?', ['Data Base Management System', 'Digital Base Management System', 'Data Byte Management System', 'Database Model System'], 0],
+                ['The chemical symbol for Sodium is?', ['So', 'Na', 'Sd', 'S'], 1],
+                ["Which gas is most abundant in Earth's atmosphere?", ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Hydrogen'], 1],
+                ['The pH value of a neutral solution is?', ['0', '7', '14', '10'], 1],
+                ['The process of a solid changing directly into gas is called?', ['Melting', 'Sublimation', 'Evaporation', 'Condensation'], 1],
+                ['The atomic number of an element represents the number of?', ['Neutrons', 'Protons', 'Electrons + Neutrons', 'Isotopes'], 1]
+            ]},
+            { section: 'Mathematics & Biology', badge: '10 MCQs', questions: [
+                ['The derivative of x² is?', ['x', '2x', 'x²', '2'], 1],
+                ['Value of sin 90° = ?', ['0', '1', '−1', '0.5'], 1],
+                ['If matrix A is 2×3 and matrix B is 3×2, the product AB will be of order?', ['2×2', '3×3', '2×3', '3×2'], 0],
+                ['The sum of the first 10 natural numbers is?', ['45', '50', '55', '60'], 2],
+                ['log₁₀(100) = ?', ['1', '2', '10', '100'], 1],
+                ['The basic unit of life is?', ['Tissue', 'Cell', 'Organ', 'Organelle'], 1],
+                ['Photosynthesis occurs mainly in which part of a plant?', ['Root', 'Stem', 'Leaves', 'Flower'], 2],
+                ['DNA stands for?', ['Deoxyribonucleic Acid', 'Diribonucleic Acid', 'Deoxyribose Nuclear Acid', 'Dinucleic Acid'], 0],
+                ['Which blood cells help fight infection?', ['Red Blood Cells', 'White Blood Cells', 'Platelets', 'Plasma'], 1],
+                ['The powerhouse of the cell is the?', ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi Body'], 2]
+            ]}
+        ];
+
+        function buildSamplePaper() {
+            let html = '<p style="text-align:center;color:var(--text-light);margin-bottom:1.2rem;">Total: 90 MCQs | Marks: 100 | Time: 120 Minutes — answer key shown below every question</p>';
+            let qNum = 0;
+            const letters = ['A', 'B', 'C', 'D'];
+            paper.forEach(sec => {
+                html += `<h4 style="color:var(--blue);margin-top:1.5rem;">${sec.section} <span class="mcq-badge">${sec.badge}</span></h4>`;
+                sec.questions.forEach(item => {
+                    qNum++;
+                    const [q, opts, correct] = item;
+                    html += `<div class="question-block"><div class="q-num">Q${qNum}. ${q}</div><div class="options">`;
+                    opts.forEach((opt, i) => {
+                        html += `<div>${letters[i]}) ${opt}${i === correct ? ' ✓' : ''}</div>`;
+                    });
+                    html += `</div><div class="correct-ans">✅ Correct Answer: ${letters[correct]}) ${opts[correct]}</div></div>`;
+                });
+            });
+            document.getElementById('samplePaperBody').innerHTML = html;
+        }
+
+        // ============ NTS SYLLABUS (full topic list per subject) ============
+        const syllabusData = [
+            { title: '📖 Verbal Reasoning', topics: [
+                'Synonyms and antonyms', 'Vocabulary building and word meanings', 'Sentence completion / fill in the blanks',
+                'Analogies (word relationships)', 'Reading comprehension passages', 'Grammar: tenses, parts of speech, subject-verb agreement',
+                'Idioms and phrases', 'Sentence correction / error identification', 'One-word substitution',
+                'Prepositions and conjunctions', 'Active and passive voice', 'Direct and indirect (reported) speech', 'Para jumbles / sentence ordering'
+            ]},
+            { title: '🧩 Analytical Reasoning', topics: [
+                'Number series and letter series', 'Seating arrangements (linear and circular)', 'Blood relations',
+                'Direction sense test', 'Syllogisms', 'Coding-decoding', 'Venn diagrams / set relationships',
+                'Logical deduction and puzzles', 'Ranking and ordering', 'Statement and conclusion / assumption',
+                'Calendars and clocks', 'Cause and effect reasoning', 'Data sufficiency'
+            ]},
+            { title: '🔢 Quantitative Reasoning', topics: [
+                'Basic arithmetic: percentages, ratios, averages', 'Profit, loss and discount', 'Simple and compound interest',
+                'Algebraic expressions and equations', 'Linear and quadratic equations', 'Geometry: lines, angles, triangles, circles',
+                'Mensuration: area, volume, perimeter', 'Time, speed and distance', 'Time and work',
+                'Number systems: LCM, HCF, divisibility', 'Data interpretation: tables, graphs, charts',
+                'Permutations, combinations and probability', 'Sets and functions basics'
+            ]},
+            { title: '⚛️ Physics', topics: [
+                'Units and measurements', 'Vectors and kinematics', "Newton's laws of motion and mechanics",
+                'Work, energy and power', 'Gravitation', 'Properties of matter / fluid mechanics',
+                'Heat and thermodynamics', 'Waves and sound', 'Electrostatics and current electricity',
+                'Magnetism and electromagnetism', 'Optics: reflection, refraction, lenses', 'Modern physics: atomic structure, radioactivity'
+            ]},
+            { title: '💻 Computer Science', topics: [
+                'Basics of computer hardware and software', 'Number systems: binary, octal, hexadecimal',
+                'MS Office basics: Word, Excel, PowerPoint', 'Internet and networking fundamentals',
+                'Programming fundamentals: variables, loops, conditions', 'Data structures basics: arrays, stacks, queues',
+                'Database concepts: DBMS, SQL basics', 'Operating systems basics', 'Computer memory and storage devices', 'Cybersecurity basics'
+            ]},
+            { title: '🧪 Chemistry', topics: [
+                'Atomic structure and periodic table', 'Chemical bonding', 'States of matter and gas laws',
+                'Stoichiometry and chemical equations', 'Acids, bases and salts', 'Chemical equilibrium',
+                'Electrochemistry basics', 'Organic chemistry basics: hydrocarbons, functional groups', 'Thermochemistry', 'Environmental chemistry'
+            ]},
+            { title: '📐 Mathematics', topics: [
+                'Sets, functions and relations', 'Algebra: polynomials, factorization', 'Matrices and determinants',
+                'Trigonometry: identities, ratios', 'Calculus basics: limits, differentiation, integration',
+                'Coordinate geometry', 'Sequences and series', 'Probability and statistics', 'Exponents and logarithms', 'Vectors'
+            ]},
+            { title: '🧬 Biology', topics: [
+                'Cell biology and cell structure', 'Genetics and heredity',
+                'Human physiology: digestive, respiratory, circulatory systems', 'Reproduction in plants and animals',
+                'Ecology and environment', 'Evolution basics', 'Plant biology: photosynthesis, transport',
+                'Microbiology basics', 'Immune system basics', 'Biotechnology basics'
+            ]}
+        ];
+
+        function buildSyllabus() {
+            let html = '';
+            syllabusData.forEach(sec => {
+                html += `<div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">${sec.title} <span class="mcq-badge">${sec.topics.length} topics</span></div><div class="accordion-body"><ul style="padding-left:1.2rem;">`;
+                sec.topics.forEach(t => { html += `<li>${t}</li>`; });
+                html += '</ul></div></div>';
+            });
+            document.getElementById('syllabusBody').innerHTML = html;
         }
 
         // ============ SUGGESTIONS ============
@@ -1040,7 +1359,6 @@
             document.getElementById('sug-name').value = '';
             document.getElementById('sug-email').value = '';
             
-            // Show toast
             const toast = document.getElementById('toast');
             toast.style.display = 'block';
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
@@ -1052,6 +1370,9 @@
             addGPASubject(); addGPASubject(); addGPASubject();
             addCGPASemester(); addCGPASemester();
             addCourse();
+            buildSamplePaper();
+            buildSyllabus();
+            buildGradeCriteria();
         };
     </script>
 </body>

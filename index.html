@@ -32,7 +32,6 @@
             line-height: 1.6;
         }
 
-        /* ========== HEADER ========== */
         .header {
             background: var(--white);
             padding: 0.8rem 2rem;
@@ -52,6 +51,7 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            cursor: pointer;
         }
 
         .logo .comsats { color: var(--blue); }
@@ -77,7 +77,6 @@
 
         .menu-btn { display: none; background: none; border: none; font-size: 1.8rem; cursor: pointer; }
 
-        /* ========== HERO ========== */
         .hero {
             background: linear-gradient(135deg, #1a237e 0%, #283593 40%, #3949ab 100%);
             color: white;
@@ -116,7 +115,6 @@
         .stat-item .num { font-size: 2rem; font-weight: 700; }
         .stat-item .lbl { font-size: 0.85rem; opacity: 0.8; }
 
-        /* ========== BUTTONS ========== */
         .btn {
             padding: 0.7rem 1.5rem;
             border-radius: 25px;
@@ -137,14 +135,12 @@
         .btn-outline:hover { background: var(--blue); color: white; }
         .btn-sm { padding: 0.4rem 1rem; font-size: 0.8rem; }
 
-        /* ========== MAIN CONTAINER ========== */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 1.5rem;
         }
 
-        /* ========== TOOLS GRID ========== */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -201,7 +197,6 @@
         .badge-green { background: #e8f5e9; color: var(--green); }
         .badge-red { background: #fdecea; color: var(--red); }
 
-        /* ========== FULL-SCREEN PAGE (was modal) ========== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -272,7 +267,6 @@
 
         .modal-body { padding: 1.5rem 2rem 3rem; max-width: 900px; margin: 0 auto; }
 
-        /* ========== ACCORDION ========== */
         .accordion-item {
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -301,7 +295,6 @@
             font-size: 0.75rem;
         }
 
-        /* ========== SAMPLE PAPER ========== */
         .question-block {
             background: #f8f9fa;
             padding: 1.2rem;
@@ -323,7 +316,6 @@
             font-size: 0.85rem;
         }
 
-        /* ========== FORM ELEMENTS ========== */
         .form-group { margin-bottom: 0.8rem; }
         .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: var(--text); }
         .form-group input,
@@ -343,7 +335,6 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
         .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; }
 
-        /* ========== COURSE CARD (Internal Marks) ========== */
         .course-card {
             background: var(--white);
             border: 1px solid var(--border);
@@ -364,13 +355,6 @@
         .course-header:hover { background: #e8eaf6; }
         .course-body { display: none; padding: 1rem; }
         .course-body.open { display: block; }
-        .course-gpa-result {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--green);
-            padding: 0.5rem;
-        }
 
         .section-label {
             background: var(--blue);
@@ -384,7 +368,6 @@
         }
         .section-label.green { background: var(--green); }
 
-        /* ---- repeating entry rows (quiz/assignment) ---- */
         .entry-block { margin-bottom: 0.6rem; }
         .entry-block-head {
             display: flex;
@@ -491,7 +474,6 @@
             width: 110px;
         }
 
-        /* ========== RESULT BOX ========== */
         .result-display {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-radius: 12px;
@@ -506,7 +488,6 @@
             color: var(--green);
         }
 
-        /* ========== TOAST NOTIFICATION ========== */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -526,7 +507,6 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* ========== FOOTER ========== */
         footer {
             background: var(--blue);
             color: white;
@@ -537,7 +517,6 @@
         footer a { color: #90caf9; text-decoration: none; }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1rem 0; flex-wrap: wrap; }
 
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .header { padding: 0.8rem 1rem; }
             .nav-links { display: none; position: absolute; top: 60px; left: 0; right: 0; background: white; flex-direction: column; padding: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -557,27 +536,25 @@
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
     <header class="header">
-        <a href="#" class="logo">
+        <a class="logo" onclick="closeAllModals()">
             <span class="comsats">COMSATS</span><span class="prime">Prime</span>
         </a>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <nav class="nav-links" id="navLinks">
-            <a href="#" onclick="openModal('nts-pattern')">📋 NTS Pattern</a>
-            <a href="#" onclick="openModal('sample-paper')">📄 Sample Paper</a>
-            <a href="#" onclick="openModal('syllabus')">📚 Syllabus</a>
-            <a href="#" onclick="openModal('merit')">📊 Merit Calc</a>
-            <a href="#" onclick="openModal('internal')">📝 Internal Marks</a>
-            <a href="#" onclick="openModal('gpa')">📈 GPA</a>
-            <a href="#" onclick="openModal('cgpa')">🎓 CGPA</a>
-            <a href="#" onclick="openModal('suggestions')">💬 Suggestions</a>
-            <a href="#" onclick="openModal('about')">ℹ️ About</a>
-            <a href="#" onclick="openModal('contact')">📞 Contact</a>
+            <a href="#" onclick="openModal('nts-pattern');return false;">📋 NTS Pattern</a>
+            <a href="#" onclick="openModal('sample-paper');return false;">📄 Sample Paper</a>
+            <a href="#" onclick="openModal('syllabus');return false;">📚 Syllabus</a>
+            <a href="#" onclick="openModal('merit');return false;">📊 Merit Calc</a>
+            <a href="#" onclick="openModal('internal');return false;">📝 Internal Marks</a>
+            <a href="#" onclick="openModal('gpa');return false;">📈 GPA</a>
+            <a href="#" onclick="openModal('cgpa');return false;">🎓 CGPA</a>
+            <a href="#" onclick="openModal('suggestions');return false;">💬 Suggestions</a>
+            <a href="#" onclick="openModal('about');return false;">ℹ️ About</a>
+            <a href="#" onclick="openModal('contact');return false;">📞 Contact</a>
         </nav>
     </header>
 
-    <!-- ==================== HERO ==================== -->
     <section class="hero">
         <h1>🎓 Your Complete Academic Toolkit</h1>
         <p>NTS Preparation • Merit Calculator • GPA/CGPA • Internal Marks — All in One Place</p>
@@ -589,335 +566,54 @@
         </div>
     </section>
 
-    <!-- ==================== TOOLS GRID ==================== -->
     <div class="main-container">
         <div class="tools-grid">
-            <div class="tool-card blue-border" onclick="openModal('nts-pattern')">
-                <div class="icon-circle icon-blue">📋</div>
-                <h3>NTS Test Pattern</h3>
-                <p>Complete exam structure with 90 MCQs breakdown</p>
-                <span class="badge badge-blue">6 Sections • 90 MCQs</span>
-            </div>
-
-            <div class="tool-card green-border" onclick="openModal('sample-paper')">
-                <div class="icon-circle icon-green">📄</div>
-                <h3>NTS Sample Paper</h3>
-                <p>Solved sample paper with answer key</p>
-                <span class="badge badge-green">Solved • 90 MCQs</span>
-            </div>
-
-            <div class="tool-card blue-border" onclick="openModal('syllabus')">
-                <div class="icon-circle icon-blue">📚</div>
-                <h3>NTS Syllabus & Topics</h3>
-                <p>Important topics for each section</p>
-                <span class="badge badge-blue">Complete Syllabus</span>
-            </div>
-
-            <div class="tool-card red-border" onclick="openModal('merit')">
-                <div class="icon-circle icon-red">📊</div>
-                <h3>COMSATS Aggregate</h3>
-                <p>Merit calculator for admissions</p>
-                <span class="badge badge-red">Matric • Inter • NTS</span>
-            </div>
-
-            <div class="tool-card green-border" onclick="openModal('internal')">
-                <div class="icon-circle icon-green">📝</div>
-                <h3>Internal Marks</h3>
-                <p>With/Without lab support</p>
-                <span class="badge badge-green">Quiz • Assign • Mid • Final</span>
-            </div>
-
-            <div class="tool-card blue-border" onclick="openModal('gpa')">
-                <div class="icon-circle icon-blue">📈</div>
-                <h3>GPA Calculator</h3>
-                <p>Semester Grade Point Average</p>
-                <span class="badge badge-blue">Grade Points System</span>
-            </div>
-
-            <div class="tool-card green-border" onclick="openModal('cgpa')">
-                <div class="icon-circle icon-green">🎓</div>
-                <h3>CGPA Calculator</h3>
-                <p>Cumulative GPA across semesters</p>
-                <span class="badge badge-green">Multi-Semester</span>
-            </div>
-
-            <div class="tool-card red-border" onclick="openModal('suggestions')">
-                <div class="icon-circle icon-red">💬</div>
-                <h3>Suggestions</h3>
-                <p>Send feedback & feature requests</p>
-                <span class="badge badge-red">We Listen!</span>
-            </div>
+            <div class="tool-card blue-border" onclick="openModal('nts-pattern')"><div class="icon-circle icon-blue">📋</div><h3>NTS Test Pattern</h3><p>Complete exam structure with 90 MCQs breakdown</p><span class="badge badge-blue">6 Sections • 90 MCQs</span></div>
+            <div class="tool-card green-border" onclick="openModal('sample-paper')"><div class="icon-circle icon-green">📄</div><h3>NTS Sample Paper</h3><p>Solved sample paper with answer key</p><span class="badge badge-green">Solved • 90 MCQs</span></div>
+            <div class="tool-card blue-border" onclick="openModal('syllabus')"><div class="icon-circle icon-blue">📚</div><h3>NTS Syllabus & Topics</h3><p>Important topics for each section</p><span class="badge badge-blue">Complete Syllabus</span></div>
+            <div class="tool-card red-border" onclick="openModal('merit')"><div class="icon-circle icon-red">📊</div><h3>COMSATS Aggregate</h3><p>Merit calculator for admissions</p><span class="badge badge-red">Matric • Inter • NTS</span></div>
+            <div class="tool-card green-border" onclick="openModal('internal')"><div class="icon-circle icon-green">📝</div><h3>Internal Marks</h3><p>With/Without lab support</p><span class="badge badge-green">Quiz • Assign • Mid • Final</span></div>
+            <div class="tool-card blue-border" onclick="openModal('gpa')"><div class="icon-circle icon-blue">📈</div><h3>GPA Calculator</h3><p>Semester Grade Point Average</p><span class="badge badge-blue">Grade Points System</span></div>
+            <div class="tool-card green-border" onclick="openModal('cgpa')"><div class="icon-circle icon-green">🎓</div><h3>CGPA Calculator</h3><p>Cumulative GPA across semesters</p><span class="badge badge-green">Multi-Semester</span></div>
+            <div class="tool-card red-border" onclick="openModal('suggestions')"><div class="icon-circle icon-red">💬</div><h3>Suggestions</h3><p>Send feedback & feature requests</p><span class="badge badge-red">We Listen!</span></div>
         </div>
     </div>
 
-    <!-- ==================== MODALS ==================== -->
+    <!-- All Modals (same as before) -->
+    <div class="modal-overlay" id="modal-nts-pattern"><div class="modal"><div class="modal-header"><button class="modal-back" onclick="closeModal('nts-pattern')">←</button><h3>📋 NTS Test Pattern</h3><button class="modal-close" onclick="closeModal('nts-pattern')">✕</button></div><div class="modal-body"><p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Total: 90 MCQs | Marks: 100 | Time: 120 Minutes</p><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">1. Verbal Reasoning <span class="mcq-badge">20 MCQs</span></div><div class="accordion-body"><p><strong>Topics:</strong> Reading Comprehension, Sentence Completion, Analogies, Synonyms & Antonyms, Grammar, Vocabulary</p></div></div><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">2. Analytical Reasoning <span class="mcq-badge">20 MCQs</span></div><div class="accordion-body"><p><strong>Topics:</strong> Logic Puzzles, Seating Arrangements, Blood Relations, Direction Sense, Syllogisms, Venn Diagrams</p></div></div><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">3. Quantitative Reasoning <span class="mcq-badge">20 MCQs</span></div><div class="accordion-body"><p><strong>Topics:</strong> Arithmetic, Algebra, Geometry, Data Interpretation, Time-Speed-Distance, Probability</p></div></div><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">4. Physics <span class="mcq-badge">10 MCQs</span></div><div class="accordion-body"><p><strong>Topics:</strong> Mechanics, Electricity, Waves, Thermodynamics, Modern Physics</p></div></div><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">5. Computer / Chemistry <span class="mcq-badge">10 MCQs</span></div><div class="accordion-body"><p><strong>Computer:</strong> IT Basics, MS Office, Programming, DBMS</p><p><strong>Chemistry:</strong> Organic, Inorganic, Physical Chemistry</p></div></div><div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">6. Math / Biology <span class="mcq-badge">10 MCQs</span></div><div class="accordion-body"><p><strong>Math:</strong> Calculus, Trigonometry, Matrices</p><p><strong>Biology:</strong> Cell Biology, Genetics, Human Physiology</p></div></div><div style="background:var(--blue);color:white;text-align:center;padding:1rem;border-radius:10px;margin-top:1rem;font-weight:600;">📌 Total: 90 MCQs | Marks: 100 | Time: 120 Minutes</div></div></div></div>
 
-    <!-- NTS Pattern Modal -->
-    <div class="modal-overlay" id="modal-nts-pattern">
-        <div class="modal">
-            <div class="modal-header">
-                <button class="modal-back" onclick="closeModal('nts-pattern')">←</button>
-                <h3>📋 NTS Test Pattern</h3>
-                <button class="modal-close" onclick="closeModal('nts-pattern')">✕</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Total: 90 MCQs | Marks: 100 | Time: 120 Minutes</p>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">1. Verbal Reasoning <span class="mcq-badge">20 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Topics:</strong> Reading Comprehension, Sentence Completion, Analogies, Synonyms & Antonyms, Grammar, Vocabulary</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">2. Analytical Reasoning <span class="mcq-badge">20 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Topics:</strong> Logic Puzzles, Seating Arrangements, Blood Relations, Direction Sense, Syllogisms, Venn Diagrams</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">3. Quantitative Reasoning <span class="mcq-badge">20 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Topics:</strong> Arithmetic, Algebra, Geometry, Data Interpretation, Time-Speed-Distance, Probability</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">4. Physics <span class="mcq-badge">10 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Topics:</strong> Mechanics, Electricity, Waves, Thermodynamics, Modern Physics</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">5. Computer / Chemistry <span class="mcq-badge">10 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Computer:</strong> IT Basics, MS Office, Programming, DBMS</p>
-                        <p><strong>Chemistry:</strong> Organic, Inorganic, Physical Chemistry</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">6. Math / Biology <span class="mcq-badge">10 MCQs</span></div>
-                    <div class="accordion-body">
-                        <p><strong>Math:</strong> Calculus, Trigonometry, Matrices</p>
-                        <p><strong>Biology:</strong> Cell Biology, Genetics, Human Physiology</p>
-                    </div>
-                </div>
+    <div class="modal-overlay" id="modal-sample-paper"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);"><button class="modal-back" onclick="closeModal('sample-paper')">←</button><h3>📄 NTS Sample Paper (Solved)</h3><button class="modal-close" onclick="closeModal('sample-paper')">✕</button></div><div class="modal-body" id="samplePaperBody"></div></div></div>
 
-                <div style="background:var(--blue);color:white;text-align:center;padding:1rem;border-radius:10px;margin-top:1rem;font-weight:600;">
-                    📌 Total: 90 MCQs | Marks: 100 | Time: 120 Minutes
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="modal-syllabus"><div class="modal"><div class="modal-header"><button class="modal-back" onclick="closeModal('syllabus')">←</button><h3>📚 NTS Syllabus & Important Topics</h3><button class="modal-close" onclick="closeModal('syllabus')">✕</button></div><div class="modal-body" id="syllabusBody"></div></div></div>
 
-    <!-- Sample Paper Modal -->
-    <div class="modal-overlay" id="modal-sample-paper">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
-                <button class="modal-back" onclick="closeModal('sample-paper')">←</button>
-                <h3>📄 NTS Sample Paper (Solved)</h3>
-                <button class="modal-close" onclick="closeModal('sample-paper')">✕</button>
-            </div>
-            <div class="modal-body" id="samplePaperBody">
-                <!-- populated by JS -->
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="modal-merit"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);"><button class="modal-back" onclick="closeModal('merit')">←</button><h3>📊 COMSATS Aggregate / Merit Calculator</h3><button class="modal-close" onclick="closeModal('merit')">✕</button></div><div class="modal-body"><p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Formula: Matric 10% + Intermediate (Part 1) 40% + NTS 50%</p><h4 style="color:var(--blue);">Matriculation</h4><div class="form-row"><div class="form-group"><label>Total Marks</label><input type="number" id="matric-total" placeholder="e.g., 1100"></div><div class="form-group"><label>Obtained Marks</label><input type="number" id="matric-obt" placeholder="e.g., 935"></div></div><h4 style="color:var(--blue);">Intermediate (Part 1 Marks)</h4><div class="form-row"><div class="form-group"><label>Total Marks</label><input type="number" id="inter-total" placeholder="e.g., 550"></div><div class="form-group"><label>Obtained Marks</label><input type="number" id="inter-obt" placeholder="e.g., 470"></div></div><div class="form-group"><label>NTS Test Score (out of 100)</label><input type="number" id="nts-score" placeholder="e.g., 75"></div><button class="btn btn-red" onclick="calcMerit()" style="width:100%;">Calculate Merit</button><div class="result-display" id="merit-result"><div class="big-num" id="merit-val">0%</div><p id="merit-detail" style="color:var(--text-light);"></p></div></div></div></div>
 
-    <!-- Syllabus Modal -->
-    <div class="modal-overlay" id="modal-syllabus">
-        <div class="modal">
-            <div class="modal-header">
-                <button class="modal-back" onclick="closeModal('syllabus')">←</button>
-                <h3>📚 NTS Syllabus & Important Topics</h3>
-                <button class="modal-close" onclick="closeModal('syllabus')">✕</button>
-            </div>
-            <div class="modal-body" id="syllabusBody">
-                <!-- populated by JS -->
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="modal-internal"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);"><button class="modal-back" onclick="closeModal('internal')">←</button><h3>📝 Internal Marks Calculator</h3><button class="modal-close" onclick="closeModal('internal')">✕</button></div><div class="modal-body"><div id="courseList"></div><button class="btn btn-green" onclick="addCourse()" style="width:100%;margin-bottom:0.5rem;">+ Add Course</button><button class="btn btn-blue" onclick="calcAllGPA()" style="width:100%;">📊 Calculate Overall GPA</button><div class="result-display" id="overall-gpa-result"><div class="big-num" id="overall-gpa-val">0.00</div><p style="color:var(--text-light);">Overall GPA</p></div></div></div></div>
 
-    <!-- Merit Calculator Modal -->
-    <div class="modal-overlay" id="modal-merit">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);">
-                <button class="modal-back" onclick="closeModal('merit')">←</button>
-                <h3>📊 COMSATS Aggregate / Merit Calculator</h3>
-                <button class="modal-close" onclick="closeModal('merit')">✕</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Formula: Matric 10% + Intermediate (Part 1) 40% + NTS 50%</p>
-                
-                <h4 style="color:var(--blue);">Matriculation</h4>
-                <div class="form-row">
-                    <div class="form-group"><label>Total Marks</label><input type="number" id="matric-total" placeholder="e.g., 1100"></div>
-                    <div class="form-group"><label>Obtained Marks</label><input type="number" id="matric-obt" placeholder="e.g., 935"></div>
-                </div>
+    <div class="modal-overlay" id="modal-gpa"><div class="modal"><div class="modal-header"><button class="modal-back" onclick="closeModal('gpa')">←</button><h3>📈 GPA Calculator</h3><button class="modal-close" onclick="closeModal('gpa')">✕</button></div><div class="modal-body"><div id="gpaSubjects"></div><button class="btn btn-blue" onclick="addGPASubject()" style="width:100%;margin-bottom:0.5rem;">+ Add Subject</button><button class="btn btn-green" onclick="calcGPA()" style="width:100%;">Calculate GPA</button><div class="result-display" id="gpa-result"><div class="big-num" id="gpa-val">0.00</div><p style="color:var(--text-light);">GPA</p></div><div class="accordion-item" style="margin-top:1.5rem;"><div class="accordion-header" onclick="toggleAccordion(this)">ℹ️ Grading Criteria</div><div class="accordion-body" id="gradeCriteriaBody"></div></div></div></div></div>
 
-                <h4 style="color:var(--blue);">Intermediate (Part 1 Marks)</h4>
-                <div class="form-row">
-                    <div class="form-group"><label>Total Marks</label><input type="number" id="inter-total" placeholder="e.g., 550"></div>
-                    <div class="form-group"><label>Obtained Marks</label><input type="number" id="inter-obt" placeholder="e.g., 470"></div>
-                </div>
+    <div class="modal-overlay" id="modal-cgpa"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);"><button class="modal-back" onclick="closeModal('cgpa')">←</button><h3>🎓 CGPA Calculator</h3><button class="modal-close" onclick="closeModal('cgpa')">✕</button></div><div class="modal-body"><div id="cgpaSemesters"></div><button class="btn btn-green" onclick="addCGPASemester()" style="width:100%;margin-bottom:0.5rem;">+ Add Semester</button><button class="btn btn-blue" onclick="calcCGPA()" style="width:100%;">Calculate CGPA</button><div class="result-display" id="cgpa-result"><div class="big-num" id="cgpa-val">0.00</div><p style="color:var(--text-light);">CGPA</p></div></div></div></div>
 
-                <div class="form-group"><label>NTS Test Score (out of 100)</label><input type="number" id="nts-score" placeholder="e.g., 75"></div>
+    <div class="modal-overlay" id="modal-suggestions"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);"><button class="modal-back" onclick="closeModal('suggestions')">←</button><h3>💬 Suggestions & Feedback</h3><button class="modal-close" onclick="closeModal('suggestions')">✕</button></div><div class="modal-body"><p style="text-align:center;color:var(--text-light);margin-bottom:1rem;">Your feedback helps us improve! All suggestions go directly to the developer.</p><div class="form-group"><label>Your Name</label><input type="text" id="sug-name" placeholder="Enter your name"></div><div class="form-group"><label>Your Email</label><input type="email" id="sug-email" placeholder="your@email.com"></div><div class="form-group"><label>Your Suggestion *</label><textarea id="sug-msg" rows="4" placeholder="Write your feedback, feature requests, or bug reports here..." required></textarea></div><button class="btn btn-red" onclick="submitSuggestion()" style="width:100%;">📨 Submit Suggestion</button><div class="result-display" id="sug-result" style="background:#e3f2fd;"><p>✅ Opening your email app... Please click Send!</p></div></div></div></div>
 
-                <button class="btn btn-red" onclick="calcMerit()" style="width:100%;">Calculate Merit</button>
-                <div class="result-display" id="merit-result">
-                    <div class="big-num" id="merit-val">0%</div>
-                    <p id="merit-detail" style="color:var(--text-light);"></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="modal-about"><div class="modal"><div class="modal-header"><button class="modal-back" onclick="closeModal('about')">←</button><h3>ℹ️ About</h3><button class="modal-close" onclick="closeModal('about')">✕</button></div><div class="modal-body"><p style="margin-bottom:1rem;">COMSATS Prime is a free academic toolkit built for students preparing for the NTS entry test and managing their coursework.</p><div style="background:#f8f9fa;border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;"><div style="width:70px;height:70px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;margin:0 auto 0.8rem;">HA</div><h3 style="color:var(--blue);margin-bottom:0.3rem;">HUSNAIN ALI</h3><p style="color:var(--text-light);font-size:0.9rem;">Computer Science Student</p><p style="color:var(--text-light);font-size:0.9rem;">COMSATS University Islamabad, Lahore Campus</p></div></div></div></div>
 
-    <!-- Internal Marks Modal -->
-    <div class="modal-overlay" id="modal-internal">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
-                <button class="modal-back" onclick="closeModal('internal')">←</button>
-                <h3>📝 Internal Marks Calculator</h3>
-                <button class="modal-close" onclick="closeModal('internal')">✕</button>
-            </div>
-            <div class="modal-body">
-                <div id="courseList"></div>
-                <button class="btn btn-green" onclick="addCourse()" style="width:100%;margin-bottom:0.5rem;">+ Add Course</button>
-                <button class="btn btn-blue" onclick="calcAllGPA()" style="width:100%;">📊 Calculate Overall GPA</button>
-                <div class="result-display" id="overall-gpa-result">
-                    <div class="big-num" id="overall-gpa-val">0.00</div>
-                    <p style="color:var(--text-light);">Overall GPA</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="modal-contact"><div class="modal"><div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);"><button class="modal-back" onclick="closeModal('contact')">←</button><h3>📞 Contact</h3><button class="modal-close" onclick="closeModal('contact')">✕</button></div><div class="modal-body"><div class="accordion-item"><div class="accordion-header" style="cursor:default;">📧 Email</div><div class="accordion-body show"><a href="mailto:husnainali4000150@gmail.com">husnainali4000150@gmail.com</a></div></div><div class="accordion-item"><div class="accordion-header" style="cursor:default;">📷 Instagram</div><div class="accordion-body show"><a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a></div></div><button class="btn btn-green" onclick="closeModal('contact');openModal('suggestions')" style="width:100%;margin-top:1rem;">💬 Send a Suggestion Instead</button></div></div></div>
 
-    <!-- GPA Modal -->
-    <div class="modal-overlay" id="modal-gpa">
-        <div class="modal">
-            <div class="modal-header">
-                <button class="modal-back" onclick="closeModal('gpa')">←</button>
-                <h3>📈 GPA Calculator</h3>
-                <button class="modal-close" onclick="closeModal('gpa')">✕</button>
-            </div>
-            <div class="modal-body">
-                <div id="gpaSubjects"></div>
-                <button class="btn btn-blue" onclick="addGPASubject()" style="width:100%;margin-bottom:0.5rem;">+ Add Subject</button>
-                <button class="btn btn-green" onclick="calcGPA()" style="width:100%;">Calculate GPA</button>
-                <div class="result-display" id="gpa-result">
-                    <div class="big-num" id="gpa-val">0.00</div>
-                    <p style="color:var(--text-light);">GPA</p>
-                </div>
-                <div class="accordion-item" style="margin-top:1.5rem;">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">ℹ️ Grading Criteria</div>
-                    <div class="accordion-body" id="gradeCriteriaBody"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="toast" id="toast">✅ Suggestion ready! Check your email app.</div>
 
-    <!-- CGPA Modal -->
-    <div class="modal-overlay" id="modal-cgpa">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
-                <button class="modal-back" onclick="closeModal('cgpa')">←</button>
-                <h3>🎓 CGPA Calculator</h3>
-                <button class="modal-close" onclick="closeModal('cgpa')">✕</button>
-            </div>
-            <div class="modal-body">
-                <div id="cgpaSemesters"></div>
-                <button class="btn btn-green" onclick="addCGPASemester()" style="width:100%;margin-bottom:0.5rem;">+ Add Semester</button>
-                <button class="btn btn-blue" onclick="calcCGPA()" style="width:100%;">Calculate CGPA</button>
-                <div class="result-display" id="cgpa-result">
-                    <div class="big-num" id="cgpa-val">0.00</div>
-                    <p style="color:var(--text-light);">CGPA</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Suggestions Modal -->
-    <div class="modal-overlay" id="modal-suggestions">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);">
-                <button class="modal-back" onclick="closeModal('suggestions')">←</button>
-                <h3>💬 Suggestions & Feedback</h3>
-                <button class="modal-close" onclick="closeModal('suggestions')">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group"><label>Your Name</label><input type="text" id="sug-name" placeholder="Enter your name"></div>
-                <div class="form-group"><label>Your Email</label><input type="email" id="sug-email" placeholder="your@email.com"></div>
-                <div class="form-group"><label>Your Suggestion *</label><textarea id="sug-msg" rows="4" placeholder="Write your feedback..." required></textarea></div>
-                <button class="btn btn-red" onclick="submitSuggestion()" style="width:100%;">📨 Submit Suggestion</button>
-                <div class="result-display" id="sug-result" style="background:#e3f2fd;"><p>✅ Thank you! Your suggestion has been received.</p></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Modal -->
-    <div class="modal-overlay" id="modal-about">
-        <div class="modal">
-            <div class="modal-header">
-                <button class="modal-back" onclick="closeModal('about')">←</button>
-                <h3>ℹ️ About</h3>
-                <button class="modal-close" onclick="closeModal('about')">✕</button>
-            </div>
-            <div class="modal-body">
-                <p style="margin-bottom:1rem;">COMSATS Prime is a free academic toolkit built for COMSATS students preparing for the NTS entry test and managing their coursework — covering the NTS test pattern, a solved sample paper, syllabus topics, an aggregate/merit calculator, an internal marks calculator, and GPA/CGPA calculators, all in one place.</p>
-
-                <div style="background:#f8f9fa;border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;">
-                    <div style="width:70px;height:70px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;margin:0 auto 0.8rem;">HA</div>
-                    <h3 style="color:var(--blue);margin-bottom:0.3rem;">HUSNAIN ALI</h3>
-                    <p style="color:var(--text-light);font-size:0.9rem;">Computer Science Student</p>
-                    <p style="color:var(--text-light);font-size:0.9rem;">COMSATS University Islamabad, Lahore Campus</p>
-                </div>
-
-                <p style="text-align:center;margin-top:1.5rem;color:var(--text-light);font-size:0.9rem;">Have feedback or found a bug? Use the Suggestions page or reach out via the Contact page.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div class="modal-overlay" id="modal-contact">
-        <div class="modal">
-            <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
-                <button class="modal-back" onclick="closeModal('contact')">←</button>
-                <h3>📞 Contact</h3>
-                <button class="modal-close" onclick="closeModal('contact')">✕</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align:center;color:var(--text-light);margin-bottom:1.5rem;">Get in touch with the developer of COMSATS Prime.</p>
-                <div class="accordion-item">
-                    <div class="accordion-header" style="cursor:default;">📧 Email</div>
-                    <div class="accordion-body show"><a href="mailto:husnainali4000150@gmail.com">husnainali4000150@gmail.com</a></div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header" style="cursor:default;">📷 Instagram</div>
-                    <div class="accordion-body show"><a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a></div>
-                </div>
-                <button class="btn btn-green" onclick="closeModal('contact');openModal('suggestions')" style="width:100%;margin-top:1rem;">💬 Send a Suggestion Instead</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">✅ Suggestion submitted successfully!</div>
-
-    <!-- ==================== FOOTER ==================== -->
     <footer>
         <p><strong>COMSATS Prime</strong> — Your Academic Companion</p>
         <div class="footer-links">
-            <a href="#" onclick="openModal('nts-pattern')">NTS Pattern</a>
-            <a href="#" onclick="openModal('sample-paper')">Sample Paper</a>
-            <a href="#" onclick="openModal('merit')">Merit Calculator</a>
-            <a href="#" onclick="openModal('gpa')">GPA</a>
-            <a href="#" onclick="openModal('cgpa')">CGPA</a>
-            <a href="#" onclick="openModal('about')">About</a>
-            <a href="#" onclick="openModal('contact')">Contact</a>
+            <a href="#" onclick="openModal('nts-pattern');return false;">NTS Pattern</a>
+            <a href="#" onclick="openModal('sample-paper');return false;">Sample Paper</a>
+            <a href="#" onclick="openModal('merit');return false;">Merit Calculator</a>
+            <a href="#" onclick="openModal('gpa');return false;">GPA</a>
+            <a href="#" onclick="openModal('cgpa');return false;">CGPA</a>
+            <a href="#" onclick="openModal('about');return false;">About</a>
+            <a href="#" onclick="openModal('contact');return false;">Contact</a>
         </div>
-        <p style="margin-top:1rem;">
-            📷 <a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a> | 
-            📧 <a href="mailto:husnainali4000150@gmail.com">husnainali4000150@gmail.com</a>
-        </p>
+        <p style="margin-top:1rem;">📷 <a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a> | 📧 <a href="mailto:husnainali4000150@gmail.com">husnainali4000150@gmail.com</a></p>
         <p style="font-size:0.8rem;opacity:0.7;margin-top:0.5rem;">© 2024 COMSATS Prime. All Rights Reserved. | Developed by Husnain Ali</p>
     </footer>
 
@@ -926,15 +622,38 @@
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
         
         function openModal(id) {
+            document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
             document.getElementById('modal-' + id).classList.add('active');
             document.body.style.overflow = 'hidden';
             window.scrollTo(0,0);
+            window.history.pushState({modal: id}, '', '#modal-' + id);
         }
         
         function closeModal(id) {
             document.getElementById('modal-' + id).classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (window.history.state && window.history.state.modal === id) {
+                window.history.back();
+            }
         }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+            document.body.style.overflow = 'auto';
+            window.history.pushState({modal: null}, '', window.location.pathname);
+        }
+        
+        // Handle browser/mobile back button
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.modal) {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+                document.getElementById('modal-' + event.state.modal).classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+                document.body.style.overflow = 'auto';
+            }
+        });
         
         function toggleAccordion(header) {
             header.nextElementSibling.classList.toggle('show');
@@ -956,9 +675,7 @@
             document.getElementById('merit-detail').textContent = `Matric: ${mp.toFixed(1)}% (10%) + Inter Part 1: ${ip.toFixed(1)}% (40%) + NTS: ${nts} (50%)`;
         }
 
-        // ============ GRADING CRITERIA (shared by GPA + Internal Marks) ============
-        // Grade changes every 5 marks. Only A down to C- were specified by you;
-        // D+/D/F were added below to cover marks under 50 so every score gets a grade.
+        // ============ GRADING CRITERIA ============
         const GRADE_TABLE = [
             { min: 85, grade: 'A',  gp: 4.00 },
             { min: 80, grade: 'A-', gp: 3.66 },
@@ -992,19 +709,13 @@
             document.getElementById('gradeCriteriaBody').innerHTML = html;
         }
 
-        // ============ GPA CALCULATOR (marks-based, live grade) ============
+        // ============ GPA CALCULATOR ============
         let gpaRowCount = 0;
         function addGPASubject() {
             gpaRowCount++;
             const div = document.createElement('div');
             div.className = 'gpa-row';
-            div.innerHTML = `
-                <input type="text" placeholder="Subject">
-                <input type="number" placeholder="Credit Hrs" class="gpa-credit" min="1" max="4">
-                <input type="number" placeholder="Marks %" class="gpa-marks" min="0" max="100" oninput="updateGPARowGrade(this)">
-                <span class="grade-live">–</span>
-                <button type="button" class="entry-remove" onclick="this.parentElement.remove()">✕</button>
-            `;
+            div.innerHTML = `<input type="text" placeholder="Subject"><input type="number" placeholder="Credit Hrs" class="gpa-credit" min="1" max="4"><input type="number" placeholder="Marks %" class="gpa-marks" min="0" max="100" oninput="updateGPARowGrade(this)"><span class="grade-live">–</span><button type="button" class="entry-remove" onclick="this.parentElement.remove()">✕</button>`;
             document.getElementById('gpaSubjects').appendChild(div);
         }
 
@@ -1034,7 +745,7 @@
             document.getElementById('gpa-val').textContent = gpa.toFixed(2);
         }
 
-        // ============ INTERNAL MARKS CALCULATOR (fixed + live) ============
+        // ============ INTERNAL MARKS CALCULATOR ============
         let courseCount = 0;
 
         function addCourse() {
@@ -1045,137 +756,33 @@
             card.className = 'course-card';
             card.id = 'course-' + id;
             card.innerHTML = `
-                <div class="course-header" onclick="toggleCourse('course-body-${id}')">
-                    <span>📚 Course ${id}</span>
-                    <span style="color:var(--text-light);">▼</span>
-                </div>
+                <div class="course-header" onclick="toggleCourseBody('course-body-${id}')"><span>📚 Course ${id}</span><span style="color:var(--text-light);">▼</span></div>
                 <div class="course-body open" id="course-body-${id}">
-                    <div class="form-row">
-                        <div class="form-group"><label>Subject Name</label><input type="text" class="course-name" placeholder="e.g., Calculus"></div>
-                        <div class="form-group"><label>Credit Hours</label><input type="number" class="course-credit" value="3" min="1" max="4"></div>
-                    </div>
-                    <div class="form-group" style="display:flex;align-items:center;gap:0.5rem;">
-                        <input type="checkbox" class="course-lab" id="hasLab-${id}" onchange="toggleCourseLab(${id})" style="width:auto;">
-                        <label for="hasLab-${id}" style="margin:0;">Has Lab</label>
-                    </div>
-
+                    <div class="form-row"><div class="form-group"><label>Subject Name</label><input type="text" class="course-name" placeholder="e.g., Calculus"></div><div class="form-group"><label>Credit Hours</label><input type="number" class="course-credit" value="3" min="1" max="4"></div></div>
+                    <div class="form-group" style="display:flex;align-items:center;gap:0.5rem;"><input type="checkbox" class="course-lab" id="hasLab-${id}" onchange="toggleCourseLab(${id})" style="width:auto;"><label for="hasLab-${id}" style="margin:0;">Has Lab</label></div>
                     <span class="section-label">📖 Theory Section</span>
-                    <div class="two-col">
-                        <div>
-                            <div class="entry-block-head"><span>Quizzes</span><button type="button" class="entry-add" onclick="addEntryRow('quiz-${id}')">+ Add</button></div>
-                            <div id="quiz-${id}"></div>
-                        </div>
-                        <div>
-                            <div class="entry-block-head"><span>Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('assign-${id}')">+ Add</button></div>
-                            <div id="assign-${id}"></div>
-                        </div>
-                    </div>
-                    <div class="two-col">
-                        <div>
-                            <div class="entry-block-head"><span>Midterm</span></div>
-                            <div class="form-row"><input type="number" class="mid-total" placeholder="Total"><input type="number" class="mid-obt" placeholder="Obtained"></div>
-                        </div>
-                        <div>
-                            <div class="entry-block-head"><span>Final Term</span></div>
-                            <div class="form-row"><input type="number" class="final-total" placeholder="Total"><input type="number" class="final-obt" placeholder="Obtained"></div>
-                        </div>
-                    </div>
-
-                    <div class="lab-section" id="lab-section-${id}" style="display:none;">
-                        <span class="section-label green">🔬 Lab Section</span>
-                        <div class="entry-block-head"><span>Lab Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('labassign-${id}')">+ Add</button></div>
-                        <div id="labassign-${id}"></div>
-                        <div class="two-col">
-                            <div>
-                                <div class="entry-block-head"><span>Lab Midterm</span></div>
-                                <div class="form-row"><input type="number" class="labmid-total" placeholder="Total"><input type="number" class="labmid-obt" placeholder="Obtained"></div>
-                            </div>
-                            <div>
-                                <div class="entry-block-head"><span>Lab Final Term</span></div>
-                                <div class="form-row"><input type="number" class="labfinal-total" placeholder="Total"><input type="number" class="labfinal-obt" placeholder="Obtained"></div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="max-width:240px;">
-                            <label>Lab Weightage % <span style="font-weight:400;color:var(--text-light);">(of final grade)</span></label>
-                            <input type="number" class="lab-weight" value="25" min="5" max="60">
-                        </div>
-                    </div>
-
-                    <div class="circles-row">
-                        <div class="gpa-graph">
-                            <svg viewBox="0 0 70 110" width="70" height="110">
-                                <line x1="16" y1="8" x2="16" y2="98" stroke="#e0e0e0" stroke-width="1"/>
-                                <text x="4" y="11" font-size="7" fill="#7f8c8d">4</text>
-                                <text x="4" y="33.5" font-size="7" fill="#7f8c8d">3</text>
-                                <text x="4" y="56" font-size="7" fill="#7f8c8d">2</text>
-                                <text x="4" y="78.5" font-size="7" fill="#7f8c8d">1</text>
-                                <text x="4" y="101" font-size="7" fill="#7f8c8d">0</text>
-                                <rect id="course-gpa-bar-${id}" x="26" y="98" width="26" height="0" rx="4" fill="var(--blue)"></rect>
-                            </svg>
-                            <div class="c-val" id="course-gpa-${id}">0.00</div>
-                            <div class="c-lbl">GPA</div>
-                        </div>
-                        <div class="circle-stat green-ring">
-                            <div class="c-val" id="course-marks-${id}">0.0/100</div>
-                            <div class="c-lbl" id="course-grade-${id}">Marks</div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                    <div class="two-col"><div><div class="entry-block-head"><span>Quizzes</span><button type="button" class="entry-add" onclick="addEntryRow('quiz-${id}')">+ Add</button></div><div id="quiz-${id}"></div></div><div><div class="entry-block-head"><span>Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('assign-${id}')">+ Add</button></div><div id="assign-${id}"></div></div></div>
+                    <div class="two-col"><div><div class="entry-block-head"><span>Midterm</span></div><div class="form-row"><input type="number" class="mid-total" placeholder="Total"><input type="number" class="mid-obt" placeholder="Obtained"></div></div><div><div class="entry-block-head"><span>Final Term</span></div><div class="form-row"><input type="number" class="final-total" placeholder="Total"><input type="number" class="final-obt" placeholder="Obtained"></div></div></div>
+                    <div class="lab-section" id="lab-section-${id}" style="display:none;"><span class="section-label green">🔬 Lab Section</span><div class="entry-block-head"><span>Lab Assignments</span><button type="button" class="entry-add" onclick="addEntryRow('labassign-${id}')">+ Add</button></div><div id="labassign-${id}"></div><div class="two-col"><div><div class="entry-block-head"><span>Lab Midterm</span></div><div class="form-row"><input type="number" class="labmid-total" placeholder="Total"><input type="number" class="labmid-obt" placeholder="Obtained"></div></div><div><div class="entry-block-head"><span>Lab Final Term</span></div><div class="form-row"><input type="number" class="labfinal-total" placeholder="Total"><input type="number" class="labfinal-obt" placeholder="Obtained"></div></div></div><div class="form-group" style="max-width:240px;"><label>Lab Weightage %</label><input type="number" class="lab-weight" value="25" min="5" max="60"></div></div>
+                    <div class="circles-row"><div class="gpa-graph"><svg viewBox="0 0 70 110" width="70" height="110"><line x1="16" y1="8" x2="16" y2="98" stroke="#e0e0e0" stroke-width="1"/><text x="4" y="11" font-size="7" fill="#7f8c8d">4</text><text x="4" y="33.5" font-size="7" fill="#7f8c8d">3</text><text x="4" y="56" font-size="7" fill="#7f8c8d">2</text><text x="4" y="78.5" font-size="7" fill="#7f8c8d">1</text><text x="4" y="101" font-size="7" fill="#7f8c8d">0</text><rect id="course-gpa-bar-${id}" x="26" y="98" width="26" height="0" rx="4" fill="var(--blue)"></rect></svg><div class="c-val" id="course-gpa-${id}">0.00</div><div class="c-lbl">GPA</div></div><div class="circle-stat green-ring"><div class="c-val" id="course-marks-${id}">0.0/100</div><div class="c-lbl" id="course-grade-${id}">Marks</div></div></div>
+                </div>`;
             courseList.appendChild(card);
-
             for (let i = 0; i < 4; i++) { addEntryRow('quiz-' + id); addEntryRow('assign-' + id); }
             for (let i = 0; i < 4; i++) { addEntryRow('labassign-' + id); }
-
-            // live recalculation whenever any field in this course changes
             card.addEventListener('input', () => calcCourseGPA(id));
             calcCourseGPA(id);
         }
 
-        function toggleCourse(bodyId) { document.getElementById(bodyId).classList.toggle('open'); }
+        function toggleCourseBody(bodyId) { document.getElementById(bodyId).classList.toggle('open'); }
+        function toggleCourseLab(id) { document.getElementById('lab-section-' + id).style.display = document.getElementById('hasLab-' + id).checked ? 'block' : 'none'; calcCourseGPA(id); }
+        function addEntryRow(containerId) { const container = document.getElementById(containerId); if (!container) return; const row = document.createElement('div'); row.className = 'entry-row'; row.innerHTML = `<input type="number" class="e-total" placeholder="Total"><input type="number" class="e-obt" placeholder="Obtained"><button type="button" class="entry-remove" onclick="removeEntryRow(this)">✕</button>`; container.appendChild(row); }
+        function removeEntryRow(btn) { const card = btn.closest('.course-card'); btn.parentElement.remove(); if (card) { const id = card.id.split('-')[1]; calcCourseGPA(id); } }
+        function sumEntries(containerId) { let total = 0, obt = 0; document.querySelectorAll('#' + containerId + ' .entry-row').forEach(row => { total += parseFloat(row.querySelector('.e-total').value) || 0; obt += parseFloat(row.querySelector('.e-obt').value) || 0; }); return total > 0 ? (obt / total * 100) : 0; }
 
-        function toggleCourseLab(id) {
-            const checked = document.getElementById('hasLab-' + id).checked;
-            document.getElementById('lab-section-' + id).style.display = checked ? 'block' : 'none';
-            calcCourseGPA(id);
-        }
-
-        function addEntryRow(containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            const row = document.createElement('div');
-            row.className = 'entry-row';
-            row.innerHTML = `
-                <input type="number" class="e-total" placeholder="Total">
-                <input type="number" class="e-obt" placeholder="Obtained">
-                <button type="button" class="entry-remove" onclick="removeEntryRow(this)">✕</button>
-            `;
-            container.appendChild(row);
-        }
-
-        function removeEntryRow(btn) {
-            const card = btn.closest('.course-card');
-            btn.parentElement.remove();
-            if (card) { const id = card.id.split('-')[1]; calcCourseGPA(id); }
-        }
-
-        function sumEntries(containerId) {
-            let total = 0, obt = 0;
-            document.querySelectorAll('#' + containerId + ' .entry-row').forEach(row => {
-                total += parseFloat(row.querySelector('.e-total').value) || 0;
-                obt += parseFloat(row.querySelector('.e-obt').value) || 0;
-            });
-            return total > 0 ? (obt / total * 100) : 0;
-        }
-
-        // Theory weights (sum to 100): Quizzes 15%, Assignments 10%, Midterm 25%, Final 50%
-        // Lab weights (sum to 100 of the lab share): Lab Assignments 20%, Lab Midterm 30%, Lab Final 50%
         function calcCourseGPA(id) {
             const card = document.getElementById('course-' + id);
             if (!card) return { gpa: 0, percent: 0 };
-            const hasLabEl = document.getElementById('hasLab-' + id);
-            const hasLab = hasLabEl ? hasLabEl.checked : false;
-
+            const hasLab = document.getElementById('hasLab-' + id)?.checked || false;
             const quizPct = sumEntries('quiz-' + id);
             const assignPct = sumEntries('assign-' + id);
             const midTotal = parseFloat(card.querySelector('.mid-total').value) || 0;
@@ -1184,15 +791,11 @@
             const finalObt = parseFloat(card.querySelector('.final-obt').value) || 0;
             const midPct = midTotal > 0 ? (midObt / midTotal * 100) : 0;
             const finalPct = finalTotal > 0 ? (finalObt / finalTotal * 100) : 0;
-
             const theoryPercent = (quizPct * 0.15) + (assignPct * 0.10) + (midPct * 0.25) + (finalPct * 0.50);
-
             let finalPercent = theoryPercent;
-
             if (hasLab) {
                 const labWeight = parseFloat(card.querySelector('.lab-weight').value) || 25;
                 const theoryWeight = 100 - labWeight;
-
                 const labAssignPct = sumEntries('labassign-' + id);
                 const labMidTotal = parseFloat(card.querySelector('.labmid-total').value) || 0;
                 const labMidObt = parseFloat(card.querySelector('.labmid-obt').value) || 0;
@@ -1200,38 +803,22 @@
                 const labFinalObt = parseFloat(card.querySelector('.labfinal-obt').value) || 0;
                 const labMidPct = labMidTotal > 0 ? (labMidObt / labMidTotal * 100) : 0;
                 const labFinalPct = labFinalTotal > 0 ? (labFinalObt / labFinalTotal * 100) : 0;
-
                 const labPercent = (labAssignPct * 0.20) + (labMidPct * 0.30) + (labFinalPct * 0.50);
-
                 finalPercent = (theoryPercent * (theoryWeight / 100)) + (labPercent * (labWeight / 100));
             }
-
             finalPercent = Math.max(0, Math.min(100, finalPercent));
             const g = gradeFromPercent(finalPercent);
-
             document.getElementById('course-marks-' + id).textContent = finalPercent.toFixed(1) + '/100';
             document.getElementById('course-grade-' + id).textContent = g.grade + ' Grade';
             document.getElementById('course-gpa-' + id).textContent = g.gp.toFixed(2);
-
             const bar = document.getElementById('course-gpa-bar-' + id);
-            if (bar) {
-                const maxBarHeight = 90; // pixels, corresponds to GPA 4.0
-                const barHeight = (g.gp / 4) * maxBarHeight;
-                bar.setAttribute('height', barHeight.toFixed(1));
-                bar.setAttribute('y', (98 - barHeight).toFixed(1));
-            }
-
+            if (bar) { const maxBarHeight = 90; const barHeight = (g.gp / 4) * maxBarHeight; bar.setAttribute('height', barHeight.toFixed(1)); bar.setAttribute('y', (98 - barHeight).toFixed(1)); }
             return { gpa: g.gp, percent: finalPercent };
         }
 
         function calcAllGPA() {
             let tp = 0, tc = 0;
-            document.querySelectorAll('.course-card').forEach(card => {
-                const id = card.id.split('-')[1];
-                const result = calcCourseGPA(id);
-                const credit = parseFloat(card.querySelector('.course-credit').value) || 0;
-                if (credit > 0) { tp += result.gpa * credit; tc += credit; }
-            });
+            document.querySelectorAll('.course-card').forEach(card => { const id = card.id.split('-')[1]; const result = calcCourseGPA(id); const credit = parseFloat(card.querySelector('.course-credit').value) || 0; if (credit > 0) { tp += result.gpa * credit; tc += credit; } });
             const overall = tc > 0 ? tp / tc : 0;
             document.getElementById('overall-gpa-result').style.display = 'block';
             document.getElementById('overall-gpa-val').textContent = overall.toFixed(2);
@@ -1242,11 +829,7 @@
             const div = document.createElement('div');
             div.className = 'form-row-3';
             div.style.marginBottom = '0.5rem';
-            div.innerHTML = `
-                <input type="text" placeholder="Semester" class="cgpa-name">
-                <input type="number" placeholder="GPA" class="cgpa-gpa" step="0.01" min="0" max="4">
-                <input type="number" placeholder="Credit Hrs" class="cgpa-credit" min="1">
-            `;
+            div.innerHTML = `<input type="text" placeholder="Semester" class="cgpa-name"><input type="number" placeholder="GPA" class="cgpa-gpa" step="0.01" min="0" max="4"><input type="number" placeholder="Credit Hrs" class="cgpa-credit" min="1">`;
             document.getElementById('cgpaSemesters').appendChild(div);
         }
 
@@ -1254,17 +837,32 @@
             const gpas = document.querySelectorAll('#cgpaSemesters .cgpa-gpa');
             const credits = document.querySelectorAll('#cgpaSemesters .cgpa-credit');
             let tp = 0, tc = 0;
-            gpas.forEach((g, i) => {
-                const gv = parseFloat(g.value) || 0;
-                const cv = parseFloat(credits[i].value) || 0;
-                if (gv > 0 && cv > 0) { tp += gv * cv; tc += cv; }
-            });
+            gpas.forEach((g, i) => { const gv = parseFloat(g.value) || 0; const cv = parseFloat(credits[i].value) || 0; if (gv > 0 && cv > 0) { tp += gv * cv; tc += cv; } });
             const cgpa = tc > 0 ? tp / tc : 0;
             document.getElementById('cgpa-result').style.display = 'block';
             document.getElementById('cgpa-val').textContent = cgpa.toFixed(2);
         }
 
-        // ============ NTS SAMPLE PAPER (90 Solved MCQs) ============
+        // ============ SUGGESTIONS (EMAIL METHOD) ============
+        function submitSuggestion() {
+            const name = document.getElementById('sug-name').value || 'Anonymous';
+            const email = document.getElementById('sug-email').value || 'No email provided';
+            const msg = document.getElementById('sug-msg').value;
+            if (!msg.trim()) { alert('Please write your suggestion!'); return; }
+            const subject = 'COMSATS Prime - Suggestion from ' + name;
+            const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nSuggestion:\n' + msg;
+            window.location.href = 'mailto:husnainali4000150@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            document.getElementById('sug-result').style.display = 'block';
+            document.getElementById('sug-msg').value = '';
+            document.getElementById('sug-name').value = '';
+            document.getElementById('sug-email').value = '';
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+            setTimeout(() => { document.getElementById('sug-result').style.display = 'none'; }, 5000);
+        }
+
+        // ============ SAMPLE PAPER DATA ============
         const paper = [
             { section: 'Verbal Reasoning', badge: '20 MCQs', questions: [
                 ['Choose the synonym of "ABUNDANT":', ['Scarce', 'Plentiful', 'Limited', 'Rare'], 1],
@@ -1295,83 +893,83 @@
                 ['Find the odd one out:', ['Apple', 'Banana', 'Carrot', 'Mango'], 2],
                 ['Pointing to a boy, a woman said, "He is the son of my only brother." How is the boy related to the woman?', ['Nephew', 'Son', 'Cousin', 'Brother'], 0],
                 ['A man walks 5 km north, then 3 km east. Approximately how far is he from his starting point?', ['5.83 km', '8 km', '2 km', '34 km'], 0],
-                ['If in a code CAT is written as 3-1-20 (position of letters in the alphabet), how is DOG written?', ['4-15-7', '4-16-7', '5-15-8', '4-15-8'], 0],
+                ['If in a code CAT is written as 3-1-20, how is DOG written?', ['4-15-7', '4-16-7', '5-15-8', '4-15-8'], 0],
                 ['Statement: "All roses are flowers. Some flowers fade quickly." Which conclusion follows?', ['All roses fade quickly.', 'Some flowers are roses.', 'No rose fades quickly.', 'None of these.'], 1],
                 ['If 5+3=28, 9+1=810, 8+6=214, then 7+2 = ?', ['59', '95', '99', '14'], 0],
-                ['Five friends sit in a row in the order C, A, B, D, E from left to right. Who sits third from the left?', ['A', 'B', 'C', 'D'], 1],
+                ['Five friends sit in a row: C, A, B, D, E. Who sits third from left?', ['A', 'B', 'C', 'D'], 1],
                 ['If today is Monday, what day will it be after 15 days?', ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], 1],
-                ['What is the angle between the hour and minute hand of a clock at 3:00?', ['60°', '75°', '90°', '120°'], 2],
-                ['Statement: "All students who play cricket also play football. Some students play only football." Which is true?', ['All football players play cricket.', 'Some cricket players are football players.', 'No cricket player plays football.', 'All football players play cricket only.'], 1],
-                ['Statement: "The government has banned plastic bags to reduce pollution." Which is the underlying assumption?', ['Plastic bags are the only cause of pollution.', 'Reducing plastic bag use can help reduce pollution.', 'All people will follow the ban immediately.', 'Pollution will completely stop.'], 1],
-                ['In a class of 40 students, Ali ranks 10th from the top. What is his rank from the bottom?', ['30th', '31st', '29th', '32nd'], 1],
+                ['What is the angle between clock hands at 3:00?', ['60°', '75°', '90°', '120°'], 2],
+                ['"All cricket players also play football. Some play only football." Which is true?', ['All football players play cricket.', 'Some cricket players are football players.', 'No cricket player plays football.', 'All football players play cricket only.'], 1],
+                ['"Government banned plastic bags to reduce pollution." Underlying assumption?', ['Plastic bags are the only cause.', 'Reducing plastic bags helps reduce pollution.', 'All will follow the ban.', 'Pollution will completely stop.'], 1],
+                ['In a class of 40, Ali ranks 10th from top. Rank from bottom?', ['30th', '31st', '29th', '32nd'], 1],
                 ['6 is to 36 as 8 is to ?', ['56', '64', '72', '48'], 1],
                 ['Find the odd one out:', ['121', '144', '169', '200'], 3],
-                ['If Monday is coded as 1, Tuesday as 2, and so on, what is Friday coded as?', ['4', '5', '6', '7'], 1],
-                ['Statement: "All doctors are educated. Some educated people are rich." Can we conclude "Some doctors are rich"?', ['Yes', 'No', 'Cannot be determined', 'Always true'], 2],
-                ['Find the missing number: 4, 9, 16, 25, ?', ['30', '32', '36', '49'], 2]
+                ['Monday=1, Tuesday=2. Friday = ?', ['4', '5', '6', '7'], 1],
+                ['"All doctors are educated. Some educated are rich." Can we conclude "Some doctors are rich"?', ['Yes', 'No', 'Cannot be determined', 'Always true'], 2],
+                ['Find missing: 4, 9, 16, 25, ?', ['30', '32', '36', '49'], 2]
             ]},
             { section: 'Quantitative Reasoning', badge: '20 MCQs', questions: [
                 ['What is 25% of 200?', ['25', '50', '75', '100'], 1],
                 ['If x + 5 = 12, then x = ?', ['5', '6', '7', '8'], 2],
-                ['Simple interest on Rs.1000 at 10% per annum for 2 years = ?', ['Rs.100', 'Rs.200', 'Rs.150', 'Rs.250'], 1],
-                ['A train travels 60 km in 1.5 hours. Its speed is?', ['30 km/h', '40 km/h', '45 km/h', '50 km/h'], 1],
+                ['Simple interest on Rs.1000 at 10% for 2 years = ?', ['Rs.100', 'Rs.200', 'Rs.150', 'Rs.250'], 1],
+                ['A train travels 60 km in 1.5 hours. Speed = ?', ['30 km/h', '40 km/h', '45 km/h', '50 km/h'], 1],
                 ['LCM of 4 and 6 = ?', ['8', '12', '24', '10'], 1],
                 ['HCF of 12 and 18 = ?', ['2', '3', '6', '4'], 2],
-                ['A shopkeeper sells an item for Rs.120 after a 20% profit. The cost price was?', ['Rs.90', 'Rs.96', 'Rs.100', 'Rs.110'], 2],
+                ['Selling price Rs.120 after 20% profit. Cost price?', ['Rs.90', 'Rs.96', 'Rs.100', 'Rs.110'], 2],
                 ['Average of 10, 20, 30, 40 = ?', ['20', '25', '30', '35'], 1],
-                ['Area of a circle with radius 7 (use π = 22/7) = ?', ['154', '144', '132', '168'], 0],
-                ['If 3 workers finish a job in 12 days, how many days will 6 workers take?', ['6', '8', '4', '12'], 0],
-                ['A ratio is 3:4. If the smaller number is 15, the larger number is?', ['18', '20', '22', '24'], 1],
+                ['Area of circle radius 7 (π=22/7) = ?', ['154', '144', '132', '168'], 0],
+                ['3 workers finish in 12 days. 6 workers = ? days', ['6', '8', '4', '12'], 0],
+                ['Ratio 3:4. Smaller=15. Larger=?', ['18', '20', '22', '24'], 1],
                 ['Solve: 2x - 4 = 10. x = ?', ['5', '6', '7', '8'], 2],
-                ['Perimeter of a square with side 9 cm = ?', ['27', '36', '45', '18'], 1],
-                ['A discount of 10% on Rs.500 gives a selling price of?', ['Rs.450', 'Rs.480', 'Rs.470', 'Rs.460'], 0],
-                ['Probability of getting a head when tossing a fair coin = ?', ['1/4', '1/2', '1/3', '1'], 1],
-                ['A car covers 150 km in 3 hours. Time to cover 250 km at the same speed = ?', ['4 hours', '5 hours', '6 hours', '4.5 hours'], 1],
-                ['Compound interest on Rs.1000 at 10% for 2 years = ?', ['Rs.210', 'Rs.200', 'Rs.220', 'Rs.100'], 0],
-                ['Value of √144 = ?', ['11', '12', '13', '14'], 1],
-                ['Sum of angles in a triangle = ?', ['90°', '180°', '270°', '360°'], 1],
-                ['If 5 pens cost Rs.50, the cost of 8 pens = ?', ['Rs.60', 'Rs.70', 'Rs.80', 'Rs.90'], 2]
+                ['Perimeter of square side 9 cm = ?', ['27', '36', '45', '18'], 1],
+                ['10% discount on Rs.500 = selling price?', ['Rs.450', 'Rs.480', 'Rs.470', 'Rs.460'], 0],
+                ['Probability of head in coin toss = ?', ['1/4', '1/2', '1/3', '1'], 1],
+                ['Car covers 150 km in 3 hrs. Time for 250 km?', ['4 hrs', '5 hrs', '6 hrs', '4.5 hrs'], 1],
+                ['Compound interest Rs.1000 at 10% for 2 years = ?', ['Rs.210', 'Rs.200', 'Rs.220', 'Rs.100'], 0],
+                ['√144 = ?', ['11', '12', '13', '14'], 1],
+                ['Sum of angles in triangle = ?', ['90°', '180°', '270°', '360°'], 1],
+                ['5 pens = Rs.50. 8 pens = ?', ['Rs.60', 'Rs.70', 'Rs.80', 'Rs.90'], 2]
             ]},
             { section: 'Physics', badge: '10 MCQs', questions: [
-                ['The SI unit of force is?', ['Joule', 'Newton', 'Watt', 'Pascal'], 1],
-                ['Acceleration due to gravity on Earth is approximately?', ['8.9 m/s²', '9.8 m/s²', '10.8 m/s²', '7.8 m/s²'], 1],
-                ['Which law states "for every action there is an equal and opposite reaction"?', ["Newton's 1st Law", "Newton's 2nd Law", "Newton's 3rd Law", 'Law of Gravitation'], 2],
-                ['The unit of electric current is?', ['Volt', 'Ampere', 'Ohm', 'Watt'], 1],
-                ['The speed of light in vacuum is approximately?', ['3×10⁵ m/s', '3×10⁸ m/s', '3×10⁶ m/s', '3×10¹⁰ m/s'], 1],
-                ['Which of these is a vector quantity?', ['Speed', 'Mass', 'Velocity', 'Energy'], 2],
-                ['Heat transfer through a vacuum happens by?', ['Conduction', 'Convection', 'Radiation', 'Diffusion'], 2],
-                ["Ohm's Law is given by?", ['V = IR', 'V = I/R', 'V = I + R', 'V = I − R'], 0],
-                ['A lens that converges light rays is called?', ['Concave', 'Convex', 'Cylindrical', 'Plane'], 1],
-                ['Which particle carries a negative charge?', ['Proton', 'Neutron', 'Electron', 'Photon'], 2]
+                ['SI unit of force?', ['Joule', 'Newton', 'Watt', 'Pascal'], 1],
+                ['Gravity on Earth ≈ ?', ['8.9 m/s²', '9.8 m/s²', '10.8 m/s²', '7.8 m/s²'], 1],
+                ['"Every action has equal and opposite reaction" is which law?', ["1st Law", "2nd Law", "3rd Law", 'Gravitation'], 2],
+                ['Unit of electric current?', ['Volt', 'Ampere', 'Ohm', 'Watt'], 1],
+                ['Speed of light in vacuum ≈ ?', ['3×10⁵ m/s', '3×10⁸ m/s', '3×10⁶ m/s', '3×10¹⁰ m/s'], 1],
+                ['Which is a vector?', ['Speed', 'Mass', 'Velocity', 'Energy'], 2],
+                ['Heat transfer in vacuum?', ['Conduction', 'Convection', 'Radiation', 'Diffusion'], 2],
+                ["Ohm's Law?", ['V = IR', 'V = I/R', 'V = I + R', 'V = I − R'], 0],
+                ['Converging lens?', ['Concave', 'Convex', 'Cylindrical', 'Plane'], 1],
+                ['Negative charge particle?', ['Proton', 'Neutron', 'Electron', 'Photon'], 2]
             ]},
-            { section: 'Computer Science & Chemistry', badge: '10 MCQs', questions: [
-                ['Which of these is an input device?', ['Monitor', 'Keyboard', 'Printer', 'Speaker'], 1],
-                ['The binary equivalent of decimal 10 is?', ['1010', '1001', '1100', '1110'], 0],
+            { section: 'Computer & Chemistry', badge: '10 MCQs', questions: [
+                ['Input device?', ['Monitor', 'Keyboard', 'Printer', 'Speaker'], 1],
+                ['Binary of 10?', ['1010', '1001', '1100', '1110'], 0],
                 ['RAM stands for?', ['Random Access Memory', 'Read Access Memory', 'Random Available Memory', 'Read Available Memory'], 0],
-                ['Which of these is a network protocol?', ['Python', 'Java', 'HTTP', 'C++'], 2],
+                ['Network protocol?', ['Python', 'Java', 'HTTP', 'C++'], 2],
                 ['DBMS stands for?', ['Data Base Management System', 'Digital Base Management System', 'Data Byte Management System', 'Database Model System'], 0],
-                ['The chemical symbol for Sodium is?', ['So', 'Na', 'Sd', 'S'], 1],
-                ["Which gas is most abundant in Earth's atmosphere?", ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Hydrogen'], 1],
-                ['The pH value of a neutral solution is?', ['0', '7', '14', '10'], 1],
-                ['The process of a solid changing directly into gas is called?', ['Melting', 'Sublimation', 'Evaporation', 'Condensation'], 1],
-                ['The atomic number of an element represents the number of?', ['Neutrons', 'Protons', 'Electrons + Neutrons', 'Isotopes'], 1]
+                ['Chemical symbol of Sodium?', ['So', 'Na', 'Sd', 'S'], 1],
+                ['Most abundant gas in atmosphere?', ['Oxygen', 'Nitrogen', 'CO₂', 'Hydrogen'], 1],
+                ['pH of neutral solution?', ['0', '7', '14', '10'], 1],
+                ['Solid directly to gas?', ['Melting', 'Sublimation', 'Evaporation', 'Condensation'], 1],
+                ['Atomic number = number of?', ['Neutrons', 'Protons', 'Electrons+Neutrons', 'Isotopes'], 1]
             ]},
-            { section: 'Mathematics & Biology', badge: '10 MCQs', questions: [
-                ['The derivative of x² is?', ['x', '2x', 'x²', '2'], 1],
-                ['Value of sin 90° = ?', ['0', '1', '−1', '0.5'], 1],
-                ['If matrix A is 2×3 and matrix B is 3×2, the product AB will be of order?', ['2×2', '3×3', '2×3', '3×2'], 0],
-                ['The sum of the first 10 natural numbers is?', ['45', '50', '55', '60'], 2],
+            { section: 'Math & Biology', badge: '10 MCQs', questions: [
+                ['Derivative of x²?', ['x', '2x', 'x²', '2'], 1],
+                ['sin 90° = ?', ['0', '1', '−1', '0.5'], 1],
+                ['2×3 × 3×2 matrix product order?', ['2×2', '3×3', '2×3', '3×2'], 0],
+                ['Sum first 10 natural numbers?', ['45', '50', '55', '60'], 2],
                 ['log₁₀(100) = ?', ['1', '2', '10', '100'], 1],
-                ['The basic unit of life is?', ['Tissue', 'Cell', 'Organ', 'Organelle'], 1],
-                ['Photosynthesis occurs mainly in which part of a plant?', ['Root', 'Stem', 'Leaves', 'Flower'], 2],
+                ['Basic unit of life?', ['Tissue', 'Cell', 'Organ', 'Organelle'], 1],
+                ['Photosynthesis occurs in?', ['Root', 'Stem', 'Leaves', 'Flower'], 2],
                 ['DNA stands for?', ['Deoxyribonucleic Acid', 'Diribonucleic Acid', 'Deoxyribose Nuclear Acid', 'Dinucleic Acid'], 0],
-                ['Which blood cells help fight infection?', ['Red Blood Cells', 'White Blood Cells', 'Platelets', 'Plasma'], 1],
-                ['The powerhouse of the cell is the?', ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi Body'], 2]
+                ['Fights infection?', ['RBC', 'WBC', 'Platelets', 'Plasma'], 1],
+                ['Powerhouse of cell?', ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi Body'], 2]
             ]}
         ];
 
         function buildSamplePaper() {
-            let html = '<p style="text-align:center;color:var(--text-light);margin-bottom:1.2rem;">Total: 90 MCQs | Marks: 100 | Time: 120 Minutes — answer key shown below every question</p>';
+            let html = '<p style="text-align:center;color:var(--text-light);margin-bottom:1.2rem;">Total: 90 MCQs | Marks: 100 | Time: 120 Minutes</p>';
             let qNum = 0;
             const letters = ['A', 'B', 'C', 'D'];
             paper.forEach(sec => {
@@ -1380,64 +978,23 @@
                     qNum++;
                     const [q, opts, correct] = item;
                     html += `<div class="question-block"><div class="q-num">Q${qNum}. ${q}</div><div class="options">`;
-                    opts.forEach((opt, i) => {
-                        html += `<div>${letters[i]}) ${opt}${i === correct ? ' ✓' : ''}</div>`;
-                    });
+                    opts.forEach((opt, i) => { html += `<div>${letters[i]}) ${opt}${i === correct ? ' ✓' : ''}</div>`; });
                     html += `</div><div class="correct-ans">✅ Correct Answer: ${letters[correct]}) ${opts[correct]}</div></div>`;
                 });
             });
             document.getElementById('samplePaperBody').innerHTML = html;
         }
 
-        // ============ NTS SYLLABUS (full topic list per subject) ============
+        // ============ SYLLABUS DATA ============
         const syllabusData = [
-            { title: '📖 Verbal Reasoning', topics: [
-                'Synonyms and antonyms', 'Vocabulary building and word meanings', 'Sentence completion / fill in the blanks',
-                'Analogies (word relationships)', 'Reading comprehension passages', 'Grammar: tenses, parts of speech, subject-verb agreement',
-                'Idioms and phrases', 'Sentence correction / error identification', 'One-word substitution',
-                'Prepositions and conjunctions', 'Active and passive voice', 'Direct and indirect (reported) speech', 'Para jumbles / sentence ordering'
-            ]},
-            { title: '🧩 Analytical Reasoning', topics: [
-                'Number series and letter series', 'Seating arrangements (linear and circular)', 'Blood relations',
-                'Direction sense test', 'Syllogisms', 'Coding-decoding', 'Venn diagrams / set relationships',
-                'Logical deduction and puzzles', 'Ranking and ordering', 'Statement and conclusion / assumption',
-                'Calendars and clocks', 'Cause and effect reasoning', 'Data sufficiency'
-            ]},
-            { title: '🔢 Quantitative Reasoning', topics: [
-                'Basic arithmetic: percentages, ratios, averages', 'Profit, loss and discount', 'Simple and compound interest',
-                'Algebraic expressions and equations', 'Linear and quadratic equations', 'Geometry: lines, angles, triangles, circles',
-                'Mensuration: area, volume, perimeter', 'Time, speed and distance', 'Time and work',
-                'Number systems: LCM, HCF, divisibility', 'Data interpretation: tables, graphs, charts',
-                'Permutations, combinations and probability', 'Sets and functions basics'
-            ]},
-            { title: '⚛️ Physics', topics: [
-                'Units and measurements', 'Vectors and kinematics', "Newton's laws of motion and mechanics",
-                'Work, energy and power', 'Gravitation', 'Properties of matter / fluid mechanics',
-                'Heat and thermodynamics', 'Waves and sound', 'Electrostatics and current electricity',
-                'Magnetism and electromagnetism', 'Optics: reflection, refraction, lenses', 'Modern physics: atomic structure, radioactivity'
-            ]},
-            { title: '💻 Computer Science', topics: [
-                'Basics of computer hardware and software', 'Number systems: binary, octal, hexadecimal',
-                'MS Office basics: Word, Excel, PowerPoint', 'Internet and networking fundamentals',
-                'Programming fundamentals: variables, loops, conditions', 'Data structures basics: arrays, stacks, queues',
-                'Database concepts: DBMS, SQL basics', 'Operating systems basics', 'Computer memory and storage devices', 'Cybersecurity basics'
-            ]},
-            { title: '🧪 Chemistry', topics: [
-                'Atomic structure and periodic table', 'Chemical bonding', 'States of matter and gas laws',
-                'Stoichiometry and chemical equations', 'Acids, bases and salts', 'Chemical equilibrium',
-                'Electrochemistry basics', 'Organic chemistry basics: hydrocarbons, functional groups', 'Thermochemistry', 'Environmental chemistry'
-            ]},
-            { title: '📐 Mathematics', topics: [
-                'Sets, functions and relations', 'Algebra: polynomials, factorization', 'Matrices and determinants',
-                'Trigonometry: identities, ratios', 'Calculus basics: limits, differentiation, integration',
-                'Coordinate geometry', 'Sequences and series', 'Probability and statistics', 'Exponents and logarithms', 'Vectors'
-            ]},
-            { title: '🧬 Biology', topics: [
-                'Cell biology and cell structure', 'Genetics and heredity',
-                'Human physiology: digestive, respiratory, circulatory systems', 'Reproduction in plants and animals',
-                'Ecology and environment', 'Evolution basics', 'Plant biology: photosynthesis, transport',
-                'Microbiology basics', 'Immune system basics', 'Biotechnology basics'
-            ]}
+            { title: '📖 Verbal Reasoning', topics: ['Synonyms and antonyms', 'Vocabulary building', 'Sentence completion', 'Analogies', 'Reading comprehension', 'Grammar', 'Idioms and phrases', 'Sentence correction', 'One-word substitution', 'Prepositions', 'Active/passive voice', 'Direct/indirect speech', 'Para jumbles'] },
+            { title: '🧩 Analytical Reasoning', topics: ['Number/letter series', 'Seating arrangements', 'Blood relations', 'Direction sense', 'Syllogisms', 'Coding-decoding', 'Venn diagrams', 'Logical deduction', 'Ranking and ordering', 'Statement-conclusion', 'Calendars and clocks', 'Cause and effect', 'Data sufficiency'] },
+            { title: '🔢 Quantitative Reasoning', topics: ['Percentages, ratios, averages', 'Profit, loss, discount', 'Simple/compound interest', 'Algebraic equations', 'Linear/quadratic equations', 'Geometry basics', 'Mensuration', 'Time, speed, distance', 'Time and work', 'LCM, HCF, divisibility', 'Data interpretation', 'Permutations, combinations', 'Probability'] },
+            { title: '⚛️ Physics', topics: ['Units and measurements', 'Vectors and kinematics', "Newton's laws", 'Work, energy, power', 'Gravitation', 'Fluid mechanics', 'Thermodynamics', 'Waves and sound', 'Electrostatics', 'Current electricity', 'Magnetism', 'Optics', 'Modern physics'] },
+            { title: '💻 Computer Science', topics: ['Hardware/software basics', 'Number systems', 'MS Office', 'Internet/networking', 'Programming fundamentals', 'Data structures', 'DBMS/SQL basics', 'Operating systems', 'Memory/storage', 'Cybersecurity basics'] },
+            { title: '🧪 Chemistry', topics: ['Atomic structure', 'Chemical bonding', 'Gas laws', 'Stoichiometry', 'Acids, bases, salts', 'Chemical equilibrium', 'Electrochemistry', 'Organic chemistry', 'Thermochemistry', 'Environmental chemistry'] },
+            { title: '📐 Mathematics', topics: ['Sets, functions, relations', 'Polynomials, factorization', 'Matrices, determinants', 'Trigonometry', 'Calculus basics', 'Coordinate geometry', 'Sequences and series', 'Probability/statistics', 'Logarithms', 'Vectors'] },
+            { title: '🧬 Biology', topics: ['Cell biology', 'Genetics', 'Human physiology', 'Reproduction', 'Ecology', 'Evolution', 'Plant biology', 'Microbiology', 'Immune system', 'Biotechnology'] }
         ];
 
         function buildSyllabus() {
@@ -1448,21 +1005,6 @@
                 html += '</ul></div></div>';
             });
             document.getElementById('syllabusBody').innerHTML = html;
-        }
-
-        // ============ SUGGESTIONS ============
-        function submitSuggestion() {
-            const msg = document.getElementById('sug-msg').value;
-            if (!msg.trim()) { alert('Please write your suggestion!'); return; }
-            document.getElementById('sug-result').style.display = 'block';
-            document.getElementById('sug-msg').value = '';
-            document.getElementById('sug-name').value = '';
-            document.getElementById('sug-email').value = '';
-            
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
-            setTimeout(() => { document.getElementById('sug-result').style.display = 'none'; }, 3000);
         }
 
         // ============ INITIALIZE ============

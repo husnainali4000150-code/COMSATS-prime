@@ -234,11 +234,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
             position: sticky;
             top: 0;
             z-index: 10;
         }
-        .modal-header h3 { font-size: 1.3rem; }
+        .modal-header h3 { font-size: 1.3rem; flex: 1; text-align: center; }
+        .modal-back {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-back:hover { background: rgba(255,255,255,0.4); }
         .modal-close {
             background: rgba(255,255,255,0.2);
             border: none;
@@ -463,8 +481,15 @@
             text-align: center;
         }
         .circle-stat.green-ring { border-color: var(--green); }
-        .circle-stat .c-val { font-size: 1.15rem; font-weight: 800; color: var(--text); }
-        .circle-stat .c-lbl { font-size: 0.72rem; color: var(--text-light); margin-top: 0.15rem; }
+        .circle-stat .c-val, .gpa-graph .c-val { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+        .circle-stat .c-lbl, .gpa-graph .c-lbl { font-size: 0.72rem; color: var(--text-light); margin-top: 0.15rem; }
+
+        .gpa-graph {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 110px;
+        }
 
         /* ========== RESULT BOX ========== */
         .result-display {
@@ -547,6 +572,8 @@
             <a href="#" onclick="openModal('gpa')">📈 GPA</a>
             <a href="#" onclick="openModal('cgpa')">🎓 CGPA</a>
             <a href="#" onclick="openModal('suggestions')">💬 Suggestions</a>
+            <a href="#" onclick="openModal('about')">ℹ️ About</a>
+            <a href="#" onclick="openModal('contact')">📞 Contact</a>
         </nav>
     </header>
 
@@ -629,6 +656,7 @@
     <div class="modal-overlay" id="modal-nts-pattern">
         <div class="modal">
             <div class="modal-header">
+                <button class="modal-back" onclick="closeModal('nts-pattern')">←</button>
                 <h3>📋 NTS Test Pattern</h3>
                 <button class="modal-close" onclick="closeModal('nts-pattern')">✕</button>
             </div>
@@ -685,6 +713,7 @@
     <div class="modal-overlay" id="modal-sample-paper">
         <div class="modal">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
+                <button class="modal-back" onclick="closeModal('sample-paper')">←</button>
                 <h3>📄 NTS Sample Paper (Solved)</h3>
                 <button class="modal-close" onclick="closeModal('sample-paper')">✕</button>
             </div>
@@ -698,6 +727,7 @@
     <div class="modal-overlay" id="modal-syllabus">
         <div class="modal">
             <div class="modal-header">
+                <button class="modal-back" onclick="closeModal('syllabus')">←</button>
                 <h3>📚 NTS Syllabus & Important Topics</h3>
                 <button class="modal-close" onclick="closeModal('syllabus')">✕</button>
             </div>
@@ -711,6 +741,7 @@
     <div class="modal-overlay" id="modal-merit">
         <div class="modal">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);">
+                <button class="modal-back" onclick="closeModal('merit')">←</button>
                 <h3>📊 COMSATS Aggregate / Merit Calculator</h3>
                 <button class="modal-close" onclick="closeModal('merit')">✕</button>
             </div>
@@ -744,6 +775,7 @@
     <div class="modal-overlay" id="modal-internal">
         <div class="modal">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
+                <button class="modal-back" onclick="closeModal('internal')">←</button>
                 <h3>📝 Internal Marks Calculator</h3>
                 <button class="modal-close" onclick="closeModal('internal')">✕</button>
             </div>
@@ -763,6 +795,7 @@
     <div class="modal-overlay" id="modal-gpa">
         <div class="modal">
             <div class="modal-header">
+                <button class="modal-back" onclick="closeModal('gpa')">←</button>
                 <h3>📈 GPA Calculator</h3>
                 <button class="modal-close" onclick="closeModal('gpa')">✕</button>
             </div>
@@ -786,6 +819,7 @@
     <div class="modal-overlay" id="modal-cgpa">
         <div class="modal">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
+                <button class="modal-back" onclick="closeModal('cgpa')">←</button>
                 <h3>🎓 CGPA Calculator</h3>
                 <button class="modal-close" onclick="closeModal('cgpa')">✕</button>
             </div>
@@ -805,6 +839,7 @@
     <div class="modal-overlay" id="modal-suggestions">
         <div class="modal">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--red),#c0392b);">
+                <button class="modal-back" onclick="closeModal('suggestions')">←</button>
                 <h3>💬 Suggestions & Feedback</h3>
                 <button class="modal-close" onclick="closeModal('suggestions')">✕</button>
             </div>
@@ -814,6 +849,52 @@
                 <div class="form-group"><label>Your Suggestion *</label><textarea id="sug-msg" rows="4" placeholder="Write your feedback..." required></textarea></div>
                 <button class="btn btn-red" onclick="submitSuggestion()" style="width:100%;">📨 Submit Suggestion</button>
                 <div class="result-display" id="sug-result" style="background:#e3f2fd;"><p>✅ Thank you! Your suggestion has been received.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="modal-about">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-back" onclick="closeModal('about')">←</button>
+                <h3>ℹ️ About</h3>
+                <button class="modal-close" onclick="closeModal('about')">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom:1rem;">COMSATS Prime is a free academic toolkit built for COMSATS students preparing for the NTS entry test and managing their coursework — covering the NTS test pattern, a solved sample paper, syllabus topics, an aggregate/merit calculator, an internal marks calculator, and GPA/CGPA calculators, all in one place.</p>
+
+                <div style="background:#f8f9fa;border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;">
+                    <div style="width:70px;height:70px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;margin:0 auto 0.8rem;">HA</div>
+                    <h3 style="color:var(--blue);margin-bottom:0.3rem;">HUSNAIN ALI</h3>
+                    <p style="color:var(--text-light);font-size:0.9rem;">Computer Science Student</p>
+                    <p style="color:var(--text-light);font-size:0.9rem;">COMSATS University Islamabad, Lahore Campus</p>
+                </div>
+
+                <p style="text-align:center;margin-top:1.5rem;color:var(--text-light);font-size:0.9rem;">Have feedback or found a bug? Use the Suggestions page or reach out via the Contact page.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="modal-contact">
+        <div class="modal">
+            <div class="modal-header" style="background:linear-gradient(135deg,var(--green),#2ecc71);">
+                <button class="modal-back" onclick="closeModal('contact')">←</button>
+                <h3>📞 Contact</h3>
+                <button class="modal-close" onclick="closeModal('contact')">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:center;color:var(--text-light);margin-bottom:1.5rem;">Get in touch with the developer of COMSATS Prime.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" style="cursor:default;">📧 Email</div>
+                    <div class="accordion-body show"><a href="mailto:husnainali4000150@gmail.com">husnainali4000150@gmail.com</a></div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" style="cursor:default;">📷 Instagram</div>
+                    <div class="accordion-body show"><a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a></div>
+                </div>
+                <button class="btn btn-green" onclick="closeModal('contact');openModal('suggestions')" style="width:100%;margin-top:1rem;">💬 Send a Suggestion Instead</button>
             </div>
         </div>
     </div>
@@ -830,6 +911,8 @@
             <a href="#" onclick="openModal('merit')">Merit Calculator</a>
             <a href="#" onclick="openModal('gpa')">GPA</a>
             <a href="#" onclick="openModal('cgpa')">CGPA</a>
+            <a href="#" onclick="openModal('about')">About</a>
+            <a href="#" onclick="openModal('contact')">Contact</a>
         </div>
         <p style="margin-top:1rem;">
             📷 <a href="https://instagram.com/hu5nain_ali" target="_blank">@hu5nain_ali</a> | 
@@ -1019,7 +1102,16 @@
                     </div>
 
                     <div class="circles-row">
-                        <div class="circle-stat">
+                        <div class="gpa-graph">
+                            <svg viewBox="0 0 70 110" width="70" height="110">
+                                <line x1="16" y1="8" x2="16" y2="98" stroke="#e0e0e0" stroke-width="1"/>
+                                <text x="4" y="11" font-size="7" fill="#7f8c8d">4</text>
+                                <text x="4" y="33.5" font-size="7" fill="#7f8c8d">3</text>
+                                <text x="4" y="56" font-size="7" fill="#7f8c8d">2</text>
+                                <text x="4" y="78.5" font-size="7" fill="#7f8c8d">1</text>
+                                <text x="4" y="101" font-size="7" fill="#7f8c8d">0</text>
+                                <rect id="course-gpa-bar-${id}" x="26" y="98" width="26" height="0" rx="4" fill="var(--blue)"></rect>
+                            </svg>
                             <div class="c-val" id="course-gpa-${id}">0.00</div>
                             <div class="c-lbl">GPA</div>
                         </div>
@@ -1120,6 +1212,14 @@
             document.getElementById('course-marks-' + id).textContent = finalPercent.toFixed(1) + '/100';
             document.getElementById('course-grade-' + id).textContent = g.grade + ' Grade';
             document.getElementById('course-gpa-' + id).textContent = g.gp.toFixed(2);
+
+            const bar = document.getElementById('course-gpa-bar-' + id);
+            if (bar) {
+                const maxBarHeight = 90; // pixels, corresponds to GPA 4.0
+                const barHeight = (g.gp / 4) * maxBarHeight;
+                bar.setAttribute('height', barHeight.toFixed(1));
+                bar.setAttribute('y', (98 - barHeight).toFixed(1));
+            }
 
             return { gpa: g.gp, percent: finalPercent };
         }
